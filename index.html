@@ -1,0 +1,1788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Palos Verdes Realty | Beach Cities &amp; Palos Verdes Homes</title>
+  <link rel="icon" type="image/png" href="Images/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'DidotLTStd-Headline-1';
+      src: url('fonts/DidotLTStd-Headline-1.woff2') format('woff2'),
+           url('fonts/DidotLTStd-Headline-1.woff')  format('woff'),
+           url('fonts/DidotLTStd-Headline-1.ttf')   format('truetype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+  </style>
+
+  <style>
+    /* =============================================
+       CUSTOM PROPERTIES
+    ============================================= */
+    :root {
+      --dark:    #292b33;
+      --darker:  #1e2028;
+      --accent:  #c2766a;
+      --white:   #ffffff;
+      --gray:    #616471;
+      --light:   #f7f7f7;
+      --border:  rgba(71, 75, 89, 0.3);
+      --font-serif: 'DidotLTStd-Headline-1', Georgia, serif;
+      --font-sans:  'Mulish', sans-serif;
+      --font-nav:   'Montserrat', sans-serif;
+      --ease:    0.3s ease;
+      --max-w:   1240px;
+    }
+
+    /* =============================================
+       RESET & BASE
+    ============================================= */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      font-size: 15px;
+      line-height: 2;
+      color: var(--dark);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    img { display: block; max-width: 100%; }
+
+    a { text-decoration: none; color: inherit; transition: color var(--ease); }
+
+    /* =============================================
+       LAYOUT HELPERS
+    ============================================= */
+    .wrap {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    .section-label {
+      font-family: var(--font-nav);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(26px, 3.5vw, 42px);
+      font-weight: 400;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      line-height: 1.15;
+    }
+
+    .section-rule {
+      width: 36px;
+      height: 1px;
+      background: var(--accent);
+      margin: 18px auto 0;
+    }
+
+    .section-rule.left { margin-left: 0; }
+
+    .section-sub {
+      font-family: var(--font-nav);
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-top: 16px;
+    }
+
+    /* Ornamental heading — thin lines on both sides of title */
+    .ornament-heading {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+    .ornament-heading::before,
+    .ornament-heading::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+    }
+    .ornament-heading span {
+      font-family: var(--font-serif);
+      font-size: clamp(16px, 2vw, 22px);
+      font-weight: 400;
+      letter-spacing: 10px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    /* Light theme (dark text, short centered lines — on white bg) */
+    .ornament-heading.orn-light {
+      justify-content: center;  /* center the text + fixed-width lines as a group */
+    }
+    .ornament-heading.orn-light::before,
+    .ornament-heading.orn-light::after {
+      background: rgba(41,43,51,0.35);
+      flex: 0 0 90px;           /* fixed 90px — don't grow to fill container */
+    }
+    .ornament-heading.orn-light span {
+      color: #626470;
+      font-size: 34px;
+      font-weight: 700;
+      letter-spacing: 3.3px;
+    }
+    /* Dark theme (white text, white lines — on dark bg) */
+    .ornament-heading.orn-dark {
+      justify-content: center;
+    }
+    .ornament-heading.orn-dark::before,
+    .ornament-heading.orn-dark::after {
+      background: rgba(255,255,255,0.35);
+      flex: 0 0 90px;
+    }
+    .ornament-heading.orn-dark span {
+      color: var(--white);
+      font-size: 34px;
+      font-weight: 700;
+      letter-spacing: 3.3px;
+    }
+
+    /* Scroll-reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.85s ease, transform 0.85s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* =============================================
+       HEADER
+    ============================================= */
+    #site-header {
+      position: absolute;
+      top: 40px;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      padding: 22px 40px;
+    }
+
+    .header-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .nav-group {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-group a {
+      font-family: var(--font-nav);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 3.3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .nav-group a:hover { color: var(--accent); opacity: 1; }
+
+    .header-logo {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .header-logo img { height: 55px; width: auto; }
+
+    /* Mobile hamburger (hidden on desktop) */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      width: 32px;
+      height: 20px;
+      position: relative;
+      margin-left: auto;
+    }
+    .nav-toggle span {
+      display: block;
+      position: absolute;
+      left: 0;
+      width: 24px;
+      height: 1.5px;
+      background: var(--white);
+      transition: transform 0.35s ease;
+    }
+    .nav-toggle span:first-child { top: 50%; transform: translateY(-5px); }
+    .nav-toggle span:last-child  { top: 50%; transform: translateY(5px); }
+
+    .nav-toggle.open span:first-child { transform: rotate(45deg); }
+    .nav-toggle.open span:last-child  { transform: rotate(-45deg); }
+
+    /* =============================================
+       HERO SLIDER
+    ============================================= */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      overflow: hidden;
+    }
+
+    /* Foreground layer — header + content scroll as one unit */
+    .hero-fg {
+      position: absolute;
+      inset: 0;
+      z-index: 5;
+      pointer-events: none;   /* pass clicks through to slides */
+      will-change: transform;
+    }
+    /* Re-enable pointer events on interactive children */
+    .hero-fg > * { pointer-events: auto; }
+
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 1.2s ease;
+      will-change: filter;
+    }
+
+    .hero-slide.active { opacity: 1; }
+
+    .hero-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      will-change: transform;
+    }
+
+    /* Ken Burns – always running on every slide so the animation
+       is never cancelled mid-frame during a crossfade.
+       Each slide gets a unique variant + phase offset so they all
+       feel distinct and never snap when fading out.            */
+    .hero-slide:nth-child(1) img { animation: kb-a 14s ease-in-out infinite alternate; }
+    .hero-slide:nth-child(2) img { animation: kb-b 14s ease-in-out infinite alternate; }
+    .hero-slide:nth-child(3) img { animation: kb-c 14s ease-in-out infinite alternate; }
+    .hero-slide:nth-child(4) img { animation: kb-a 14s ease-in-out infinite alternate; animation-delay: -5s; }
+    .hero-slide:nth-child(5) img { animation: kb-b 14s ease-in-out infinite alternate; animation-delay: -9s; }
+
+    @keyframes kb-a {
+      from { transform: scale(1.05) translate(0%,     0%);   }
+      to   { transform: scale(1.10) translate(-1.2%,  0.8%); }
+    }
+    @keyframes kb-b {
+      from { transform: scale(1.08) translate(0.8%,  -0.4%); }
+      to   { transform: scale(1.05) translate(-0.4%,  0.4%); }
+    }
+    @keyframes kb-c {
+      from { transform: scale(1.05) translate(-0.8%,  0.4%); }
+      to   { transform: scale(1.12) translate( 0.8%, -0.8%); }
+    }
+
+    /* Gradient overlay */
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(41,43,51,0.25) 0%,
+        rgba(41,43,51,0.05) 45%,
+        rgba(41,43,51,0.55) 100%
+      );
+      pointer-events: none;
+    }
+
+    /* Text content */
+    .hero-content {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      text-align: center;
+      color: var(--white);
+      padding: 0 24px 10vh;
+    }
+
+    /* Per-line fade-down entrance — each line starts above, drifts into place */
+    .hero-line-1,
+    .hero-line-2,
+    .hero-tagline {
+      display: block;
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: opacity 0.75s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  transform 0.75s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .hero-content.visible .hero-line-1  { opacity: 1;   transform: none; transition-delay: 0.10s; }
+    .hero-content.visible .hero-line-2  { opacity: 1;   transform: none; transition-delay: 0.32s; }
+    .hero-content.visible .hero-tagline { opacity: 0.8; transform: none; transition-delay: 0.54s; }
+
+    .hero-eyebrow {
+      font-family: var(--font-nav);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: 53px;
+      font-weight: 400;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      line-height: 1.08;
+      margin-bottom: 24px;
+    }
+
+    .hero-tagline {
+      font-family: var(--font-nav);
+      font-size: 15px;
+      font-weight: 400;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* Arrows */
+    .hero-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      width: 46px;
+      height: 46px;
+      border: 1px solid rgba(255,255,255,0.4);
+      background: none;
+      color: var(--white);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background var(--ease), border-color var(--ease);
+    }
+    .hero-btn:hover { background: rgba(255,255,255,0.15); border-color: var(--white); }
+    .hero-btn svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 1.5; }
+    .hero-btn--prev { left: 32px; }
+    .hero-btn--next { right: 32px; }
+
+    /* Scroll-down chevron */
+    .hero-scroll-down {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      color: var(--white);
+      opacity: 0.7;
+      animation: bounce-down 2.2s ease-in-out infinite;
+      transition: opacity var(--ease);
+    }
+    .hero-scroll-down:hover { opacity: 1; }
+    .hero-scroll-down svg {
+      width: 28px;
+      height: 28px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    @keyframes bounce-down {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* =============================================
+       FEATURED PROPERTIES  (single-card dark slider)
+    ============================================= */
+    .properties {
+      background: var(--dark);
+      padding: 0 0 96px;
+      position: relative;
+      overflow: hidden;
+    }
+    .properties::after {
+      content: 'FEATURED';
+      position: absolute;
+      bottom: 34px;
+      right: -10px;
+      font-family: var(--font-serif);
+      font-size: clamp(80px, 13vw, 190px);
+      font-weight: 400;
+      color: #1B1C21;
+      text-transform: uppercase;
+      letter-spacing: 8px;
+      pointer-events: none;
+      line-height: 1;
+      white-space: nowrap;
+      z-index: 0;
+    }
+    .prop-heading-wrap {
+      height: 114px;
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      margin: 0 auto;
+    }
+    .feat-stage {
+      position: relative;
+      width: 100%;
+      z-index: 1;
+    }
+    .feat-slider-wrap {
+      max-width: 1002px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .feat-viewport { overflow: hidden; }
+    .feat-track {
+      display: flex;
+      transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .feat-card {
+      flex: 0 0 100%;
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 16 / 10;
+    }
+    .feat-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s ease;
+    }
+    .feat-card:hover img { transform: scale(1.04); }
+    .feat-card-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 60px 36px 32px;
+      background: linear-gradient(to top, rgba(20,22,30,0.85) 0%, transparent 100%);
+    }
+    .feat-title {
+      font-family: var(--font-serif);
+      font-size: clamp(24px, 3.6vw, 42px);
+      font-weight: 400;
+      color: var(--white);
+      letter-spacing: 1px;
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+    .feat-address {
+      font-family: var(--font-nav);
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #ffffff;
+    }
+    .feat-nav {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.35);
+      background: none;
+      color: var(--white);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background var(--ease), border-color var(--ease);
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+    }
+    #propPrev { left: calc(50% - 560px); }
+    #propNext { right: calc(50% - 560px); }
+    .feat-nav:hover { background: rgba(255,255,255,0.12); border-color: var(--white); }
+    .feat-nav svg { width: 27px; height: 27px; stroke: #B87A6D; fill: none; stroke-width: 1.5; }
+    .feat-footer { text-align: center; margin-top: 44px; position: relative; z-index: 1; }
+    .feat-view-all {
+      font-family: var(--font-nav);
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,0.35);
+      color: var(--accent);
+      background: #292B32;
+      padding: 4px 52px;
+      display: inline-block;
+      transition: background var(--ease), border-color var(--ease);
+    }
+    .feat-view-all:hover { background: rgba(255,255,255,0.08); border-color: var(--accent); }
+
+    .outline-btn {
+      font-family: var(--font-nav);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      border: 1px solid var(--dark);
+      padding: 13px 50px;
+      color: var(--dark);
+      display: inline-block;
+      transition: background var(--ease), color var(--ease);
+    }
+    .outline-btn:hover { background: var(--dark); color: var(--white); }
+    .outline-btn.light {
+      border-color: rgba(255,255,255,0.4);
+      color: var(--white);
+    }
+    .outline-btn.light:hover { background: rgba(255,255,255,0.1); border-color: var(--white); }
+
+    /* =============================================
+       FEATURED NEIGHBORHOODS  (dark mosaic grid)
+    ============================================= */
+    .neighborhoods {
+      background: var(--dark);
+      position: relative;
+      padding: 72px 40px;    /* top/bottom breathing room for parallax float */
+      overflow: hidden;
+    }
+    /* Three explicit column divs — needed for the column parallax */
+    .neighborhoods-mosaic {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr 1fr;
+      gap: 24px;
+      align-items: start;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .nbhd-col {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      will-change: transform;
+    }
+    /* Row 1 tile (first child of each column) is taller */
+    .nbhd-col .nbhd-tile:first-child { height: 360px; }
+    /* All other tiles + text cell are shorter */
+    .nbhd-col .nbhd-tile:not(:first-child),
+    .nbhd-col .nbhd-text-cell { height: 280px; }
+
+    .nbhd-tile {
+      position: relative;
+      overflow: hidden;
+      display: block;
+      flex-shrink: 0;
+    }
+    .nbhd-tile img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.75s ease;
+    }
+    .nbhd-tile:hover img { transform: scale(1.07); }
+    .nbhd-tile-label {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      text-align: center;
+      padding: 0 22px 22px;
+      background: linear-gradient(to top, rgba(20,22,30,0.65) 0%, rgba(20,22,30,0.0) 50%);
+      font-family: var(--font-nav);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: var(--white);
+      text-shadow: 0 1px 6px rgba(0,0,0,0.55);
+    }
+    .nbhd-text-cell {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 44px 40px 36px;
+      background: var(--dark);
+      flex-shrink: 0;
+    }
+    .nbhd-text-cell h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(18px, 2.8vw, 30px);
+      font-weight: 700;
+      letter-spacing: 3.3px;
+      text-transform: uppercase;
+      color: var(--white);
+      line-height: 1.25;
+      margin-bottom: 20px;
+    }
+    .nbhd-text-cell p {
+      font-size: 13px;
+      letter-spacing: 0.3px;
+      color: rgba(255,255,255,0.58);
+      line-height: 2;
+    }
+
+
+    /* =============================================
+       SOCIAL BAR
+    ============================================= */
+    .social-bar {
+      background: var(--white);
+      height: 114px;
+      display: flex;
+      align-items: center;
+      padding: 0 40px;
+    }
+    .social-bar-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 36px;
+    }
+    .social-bar-line {
+      flex: 0 0 90px;
+      height: 1px;
+      background: rgba(41,43,51,0.35);
+    }
+    .social-bar-icons {
+      display: flex;
+      gap: 26px;
+      align-items: center;
+    }
+    .social-bar-icon {
+      color: var(--dark);
+      transition: opacity var(--ease);
+      display: flex;
+      align-items: center;
+    }
+    .social-bar-icon:hover { opacity: 0.6; }
+    .social-bar-icon svg { width: 29px; height: 29px; display: block; }
+
+    /* =============================================
+       MEET THE TEAM
+    ============================================= */
+    .team { padding: 0 0 96px; }
+
+    .team-ornament-wrap {
+      height: 114px;
+      display: flex;
+      align-items: center;
+      padding: 0 40px;
+    }
+    .team-ornament-wrap .ornament-heading,
+    .prop-heading-wrap .ornament-heading {
+      width: 100%;
+    }
+
+    .team-banner {
+      width: 100%;
+      height: 480px;
+      overflow: hidden;
+      position: relative;
+      margin: 0 0 72px;
+    }
+    .team-banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+    }
+
+    .team-grid {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+    }
+
+    .team-name {
+      font-family: var(--font-serif);
+      font-size: 42px;              /* exact match from live site inspector */
+      font-weight: 400;
+      letter-spacing: 3.1px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      line-height: 1.1;
+      color: var(--dark);
+    }
+
+    .team-bio {
+      font-family: var(--font-nav);  /* Montserrat, matches live site */
+      font-size: 15px;
+      font-weight: 400;
+      letter-spacing: 0.3px;
+      color: var(--dark);
+      line-height: 34px;             /* exact match from inspector */
+      margin-bottom: 24px;
+    }
+
+    .team-read-more {
+      font-family: var(--font-nav);
+      font-size: 15px;               /* matches live site: 15px */
+      font-weight: 700;
+      letter-spacing: 0.2px;         /* matches live site: 0.2px */
+      text-transform: uppercase;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 12px;
+      transition: opacity var(--ease);
+    }
+    .team-read-more:hover { opacity: 0.75; }
+
+    .team-email {
+      font-family: var(--font-nav);
+      font-size: 15px;               /* matches live site: 15px */
+      letter-spacing: 0.3px;
+      color: var(--dark);            /* dark on white bg, matches live site */
+      display: block;
+      transition: color var(--ease);
+    }
+    .team-email:hover { color: var(--accent); }
+
+    /* =============================================
+       JOIN OUR NETWORK
+    ============================================= */
+    .network {
+      background: var(--dark);
+      padding: 104px 0;
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+    .network::after {
+      content: 'CONTACT';
+      position: absolute;
+      bottom: -20px;
+      right: -10px;
+      font-family: var(--font-serif);
+      font-size: clamp(80px, 13vw, 190px);
+      font-weight: 400;
+      color: #1B1C21;
+      text-transform: uppercase;
+      letter-spacing: 8px;
+      pointer-events: none;
+      line-height: 1;
+      white-space: nowrap;
+      z-index: 0;
+    }
+
+    .network-inner {
+      display: grid;
+      grid-template-columns: 1fr 2fr;   /* left ~33%, form ~66% */
+      gap: 80px;
+      align-items: start;
+      position: relative;
+      z-index: 1;
+    }
+
+    .network-copy .section-title { color: var(--white); }
+
+    .network-text {
+      font-family: var(--font-nav);   /* Montserrat, matches live site */
+      font-size: 15px;
+      font-weight: 300;               /* Light */
+      color: #ffffff;
+      line-height: 34px;
+      letter-spacing: 0.8px;
+    }
+
+    /* Form */
+    .contact-form { display: flex; flex-direction: column; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; }
+
+    .form-field { margin-bottom: 40px; }
+
+    .form-field label {
+      display: block;
+      font-family: var(--font-nav);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: #ffffff;
+      margin-bottom: 12px;
+    }
+
+    .form-field input,
+    .form-field textarea {
+      width: 100%;
+      background: none;
+      border: none;
+      border-bottom: 1px solid rgb(150,150,150);
+      padding: 10px 0;
+      font-family: var(--font-sans);
+      font-size: 18px;
+      color: #ffffff;
+      outline: none;
+      transition: border-color var(--ease);
+    }
+
+    .form-field input:focus,
+    .form-field textarea:focus { border-bottom-color: rgba(255,255,255,0.85); }
+
+    .form-field input::placeholder,
+    .form-field textarea::placeholder { color: #A5A7B1; }
+
+    .form-field textarea { resize: none; height: 110px; }  /* taller message box */
+
+    .form-submit {
+      font-family: var(--font-nav);
+      font-size: 16px;               /* exact: 16px */
+      font-weight: 700;
+      letter-spacing: 0.8px;         /* exact: 0.8px */
+      text-transform: uppercase;
+      color: var(--accent);
+      background: #292B32;           /* filled dark background, not ghost */
+      border: 1px solid rgb(168,168,168);        /* solid gray border, matches live */
+      padding: 13px 60px;            /* exact: 13px 60px */
+      cursor: pointer;
+      align-self: flex-start;
+      margin-top: 10px;
+      position: relative;
+      z-index: 1;
+      transition: background var(--ease), border-color var(--ease);
+    }
+    .form-submit:hover { background: var(--darker); border-color: rgb(200,200,200); }
+
+    /* =============================================
+       FOOTER
+    ============================================= */
+    footer { background: transparent; }
+
+    .footer-dark {
+      background: var(--dark);
+      color: rgba(255,255,255,0.55);
+      padding: 80px 0 56px;
+    }
+
+    .footer-logo-area {
+      text-align: center;
+      padding-bottom: 64px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 56px;
+    }
+    .footer-logo-area img {
+      height: 80px;
+      width: auto;
+      opacity: 0.85;
+      margin: 0 auto;
+    }
+
+    .footer-cols {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 56px;
+    }
+    .footer-left {
+      display: flex;
+      flex-direction: column;
+    }
+    .footer-small-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-top: 32px;
+    }
+
+    .footer-dir-label {
+      font-family: var(--font-nav);
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+    .footer-address {
+      font-family: var(--font-nav);
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 2.9px;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 22px;
+      line-height: 1.7;
+    }
+    .footer-disclaimer {
+      font-size: 11px;
+      line-height: 1.9;
+      margin-bottom: 20px;
+    }
+    .footer-dre {
+      font-family: var(--font-nav);
+      font-size: 10px;
+      letter-spacing: 0.5px;
+      line-height: 2;
+      color: rgba(255,255,255,0.38);
+    }
+    .footer-legal { font-size: 11px; line-height: 1.9; }
+
+    .footer-phone {
+      font-family: var(--font-nav);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+    .footer-email-link {
+      font-family: var(--font-nav);
+      font-size: 14px;
+      letter-spacing: 0.3px;
+      color: var(--white);
+      margin-bottom: 24px;
+    }
+    .footer-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    .footer-nav a {
+      font-family: var(--font-nav);
+      font-size: 14px;
+      letter-spacing: 0.3px;
+      color: var(--white);
+      transition: color var(--ease);
+    }
+    .footer-nav a:hover { color: var(--accent); }
+    .footer-attr {
+      font-family: var(--font-nav);
+      font-size: 10px;
+      letter-spacing: 0.5px;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 18px;
+    }
+    .footer-badges img {
+      height: 34px;
+      width: auto;
+      opacity: 0.5;
+    }
+
+    /* =============================================
+       RESPONSIVE
+    ============================================= */
+    @media (max-width: 1120px) {
+      #propPrev { left: 16px; }
+      #propNext { right: 16px; }
+    }
+
+    @media (max-width: 1024px) {
+      .nav-group { display: none; }
+      .nav-toggle { display: flex; }
+      .feat-slider-wrap { max-width: 802px; }
+      .neighborhoods-mosaic { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .nbhd-col { display: contents; }
+      .nbhd-tile { height: 280px; }
+      .nbhd-col .nbhd-tile:first-child { height: 280px; }
+      .nbhd-text-cell { height: 280px; }
+      .network-inner { grid-template-columns: 1fr; gap: 52px; }
+      .footer-cols { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .wrap { padding: 0 20px; }
+
+      #site-header { padding: 28px 20px; }
+
+      .header-logo {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .header-logo img {
+        height: 38px;
+        width: auto;
+        max-width: none;
+      }
+
+      .hero-btn { display: none; }
+
+      .feat-nav { width: 40px; height: 40px; }
+      #propPrev { left: 12px; }
+      #propNext { right: 12px; }
+
+      .neighborhoods { padding: 0 20px; }
+      .neighborhoods-mosaic { grid-template-columns: 1fr 1fr; }
+      .nbhd-tile { height: 220px; }
+      .nbhd-text-cell { height: 220px; padding: 28px 24px; }
+
+
+      .team-banner { height: 280px; }
+      .team-grid { grid-template-columns: 1fr; gap: 52px; padding: 0 20px; }
+      .team-ornament-wrap { padding: 0 20px; }
+      .ornament-heading.orn-light span,
+      .ornament-heading.orn-dark span { font-size: 32px; }
+
+      .footer-cols { grid-template-columns: 1fr; gap: 36px; }
+      .footer-dark { padding: 56px 0 40px; }
+    }
+
+    @media (max-width: 480px) {
+      .neighborhoods { padding: 0 12px; }
+      .neighborhoods-mosaic { grid-template-columns: 1fr; }
+      .nbhd-tile { height: 200px; }
+      .nbhd-text-cell { height: auto; padding: 36px 20px; }
+      .hero-title { letter-spacing: 4px; }
+      #propPrev { left: 8px; }
+      #propNext { right: 8px; }
+    }
+
+    /* =============================================
+       MOBILE NAV OVERLAY
+    ============================================= */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 190;
+      flex-direction: column;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+
+    .mobile-nav.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Top strip — hero image peeks through as background */
+    .mobile-nav-hero {
+      position: relative;
+      height: 160px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .mobile-nav-hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+    }
+
+    /* Logo centred over the hero strip */
+    .mobile-nav-logo {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mobile-nav-logo img {
+      height: 56px;
+      width: auto;
+    }
+
+    /* Close button top-right */
+    .mobile-nav-close {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      background: none;
+      border: none;
+      color: var(--white);
+      cursor: pointer;
+      padding: 4px;
+      line-height: 1;
+      font-size: 22px;
+      font-weight: 300;
+      font-family: var(--font-sans);
+      letter-spacing: 0;
+    }
+
+    /* Home link — dark gray bar */
+    .mobile-nav-home {
+      background: var(--dark);
+      text-align: center;
+      padding: 20px 24px;
+      flex-shrink: 0;
+    }
+
+    .mobile-nav-home a {
+      font-family: var(--font-nav);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+
+    /* Secondary links — white background */
+    .mobile-nav-links {
+      background: var(--white);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      padding: 8px 0 24px;
+    }
+
+    .mobile-nav-links a {
+      display: block;
+      width: 100%;
+      text-align: center;
+      font-family: var(--font-nav);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: var(--dark);
+      padding: 22px 24px;
+      transition: color var(--ease);
+    }
+
+    .mobile-nav-links a:hover { color: var(--accent); }
+
+    @media (max-width: 768px) {
+      .mobile-nav { display: flex; }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ============================================================
+     MOBILE NAV OVERLAY
+============================================================ -->
+<nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation" aria-hidden="true">
+
+  <div class="mobile-nav-hero">
+    <img src="Images/Drone PV 1920x1200.jpg" alt="" aria-hidden="true">
+    <div class="mobile-nav-logo">
+      <img src="Images/PVR-logotype-wht@2x.png" alt="Palos Verdes Realty">
+    </div>
+    <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close menu">&#215;</button>
+  </div>
+
+  <div class="mobile-nav-home">
+    <a href="#" id="mobileNavHomeLink">Home</a>
+  </div>
+
+  <div class="mobile-nav-links">
+    <a href="#team"          id="mnTeam">Meet The Team</a>
+    <a href="#neighborhoods" id="mnNeighborhoods">Neighborhoods</a>
+    <a href="#contact"       id="mnContact">Contact</a>
+  </div>
+
+</nav>
+
+
+<!-- ============================================================
+     HERO SLIDER  (header lives inside as part of the foreground layer)
+============================================================ -->
+<section class="hero" id="hero">
+
+  <!-- ── Background layer (slides only) ── -->
+  <div class="hero-slide active">
+    <img src="Images/Home 1920x1200 (1).jpg" alt="Palos Verdes Coastal Home">
+  </div>
+  <div class="hero-slide">
+    <img src="Images/Home 1920x1200 (2).jpg" alt="South Bay Luxury Home">
+  </div>
+  <div class="hero-slide">
+    <img src="Images/Drone PV 1920x1200.jpg" alt="Palos Verdes Aerial View">
+  </div>
+  <div class="hero-slide">
+    <img src="Images/Home 1920x1200 (3).jpg" alt="Beach Cities Home">
+  </div>
+  <div class="hero-slide">
+    <img src="Images/Home 1920x1200 (4).jpg" alt="Southern California Estate">
+  </div>
+
+  <div class="hero-overlay"></div>
+
+  <!-- ── Foreground layer — all white UI elements move as one unit ── -->
+  <div class="hero-fg">
+
+    <header id="site-header">
+      <div class="header-inner">
+
+        <ul class="nav-group">
+          <li><a href="#team">Meet The Team</a></li>
+          <li><a href="#neighborhoods">Neighborhoods</a></li>
+        </ul>
+
+        <a class="header-logo" href="#">
+          <img src="Images/PVR-logotype-wht@2x.png"
+               alt="Palos Verdes Realty" width="192">
+        </a>
+
+        <ul class="nav-group" style="justify-content: flex-end;">
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+
+        <button class="nav-toggle" id="navToggle" aria-label="Open menu">
+          <span></span><span></span>
+        </button>
+
+      </div>
+    </header>
+
+    <!-- Content -->
+    <div class="hero-content" id="heroContent">
+      <h1 class="hero-title">
+        <span class="hero-line-1">Homes</span>
+        <span class="hero-line-2">That Inspire</span>
+      </h1>
+      <p class="hero-tagline">Beach Cities &nbsp;·&nbsp; Palos Verdes &nbsp;·&nbsp; Southern California</p>
+    </div>
+
+    <!-- Slider controls -->
+    <button class="hero-btn hero-btn--prev" id="heroPrev" aria-label="Previous slide">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button class="hero-btn hero-btn--next" id="heroNext" aria-label="Next slide">
+      <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+
+    <button class="hero-scroll-down" id="heroScrollDown" aria-label="Scroll down">
+      <svg viewBox="0 0 24 24"><polyline points="4 9 12 17 20 9"/></svg>
+    </button>
+
+  </div><!-- /.hero-fg -->
+
+</section>
+
+
+<!-- ============================================================
+     FEATURED PROPERTIES
+============================================================ -->
+<section class="properties" id="properties">
+
+  <div class="prop-heading-wrap">
+    <h2 class="ornament-heading orn-dark"><span>Featured</span></h2>
+  </div>
+
+  <div class="feat-stage">
+    <button class="feat-nav" id="propPrev" aria-label="Previous listing">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+
+    <div class="feat-slider-wrap">
+      <div class="feat-viewport">
+        <div class="feat-track" id="propTrack">
+
+          <div class="feat-card">
+            <img src="Images/PFRE Aug 18.jpg" alt="The Kitchen with a View — Manhattan Beach" loading="lazy">
+            <div class="feat-card-overlay">
+              <h3 class="feat-title">The Kitchen<br>with a View</h3>
+              <p class="feat-address">945 7th Street, Manhattan Beach</p>
+            </div>
+          </div>
+
+          <div class="feat-card">
+            <img src="Images/January Entry Exterior Twilight.jpg" alt="Entry — Palos Verdes Estates" loading="lazy">
+            <div class="feat-card-overlay">
+              <h3 class="feat-title">A Timeless<br>Palos Verdes Estate</h3>
+              <p class="feat-address">4 Rockinghorse Road, Palos Verdes Estates</p>
+            </div>
+          </div>
+
+          <div class="feat-card">
+            <img src="Images/Home 1920x1200 (1).jpg" alt="Rancho Palos Verdes Home" loading="lazy">
+            <div class="feat-card-overlay">
+              <h3 class="feat-title">Coastal Views<br>&amp; Open Skies</h3>
+              <p class="feat-address">30724 Ganado Drive, Rancho Palos Verdes</p>
+            </div>
+          </div>
+
+          <div class="feat-card">
+            <img src="Images/Home 1920x1200 (2).jpg" alt="Hermosa Beach Home" loading="lazy">
+            <div class="feat-card-overlay">
+              <h3 class="feat-title">Steps from<br>the Sand</h3>
+              <p class="feat-address">516 Longfellow Avenue, Hermosa Beach</p>
+            </div>
+          </div>
+
+        </div><!-- /feat-track -->
+      </div><!-- /feat-viewport -->
+    </div><!-- /feat-slider-wrap -->
+
+    <button class="feat-nav" id="propNext" aria-label="Next listing">
+      <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+  </div><!-- /feat-stage -->
+
+  <div class="feat-footer">
+    <a href="https://palosverdesrealty.com/featured-listings/" class="feat-view-all">View All</a>
+  </div>
+
+</section>
+
+
+
+
+<!-- Social icons bar -->
+<div class="social-bar">
+  <div class="social-bar-inner">
+    <div class="social-bar-line"></div>
+    <div class="social-bar-icons">
+      <a class="social-bar-icon" href="#" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+      </a>
+      <a class="social-bar-icon" href="#" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/></svg>
+      </a>
+      <a class="social-bar-icon" href="#" aria-label="YouTube">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="white"/></svg>
+      </a>
+      <a class="social-bar-icon" href="#" aria-label="Twitter">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+      </a>
+      <a class="social-bar-icon" href="#" aria-label="Pinterest">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.65 7.86 6.39 9.29-.09-.78-.17-1.98.04-2.83.18-.77 1.22-5.17 1.22-5.17s-.31-.63-.31-1.56c0-1.46.85-2.55 1.9-2.55.9 0 1.33.67 1.33 1.48 0 .9-.58 2.26-.87 3.51-.25 1.05.52 1.9 1.55 1.9 1.86 0 3.11-2.39 3.11-5.22 0-2.15-1.45-3.76-4.08-3.76-2.97 0-4.81 2.22-4.81 4.68 0 .85.25 1.45.64 1.91.18.21.2.3.14.54-.05.17-.15.58-.2.74-.07.25-.28.33-.51.24-1.39-.58-2.04-2.14-2.04-3.9 0-2.88 2.43-6.35 7.25-6.35 3.88 0 6.45 2.81 6.45 5.84 0 3.99-2.22 6.96-5.48 6.96-1.1 0-2.13-.59-2.48-1.26l-.67 2.59c-.24.94-.9 2.12-1.34 2.84C12.07 22 12.04 22 12 22c-5.52 0-10-4.48-10-10S6.48 2 12 2z"/></svg>
+      </a>
+    </div>
+    <div class="social-bar-line"></div>
+  </div>
+</div>
+
+<!-- ============================================================
+     FEATURED NEIGHBORHOODS
+============================================================ -->
+<section class="neighborhoods" id="neighborhoods">
+  <div class="neighborhoods-mosaic">
+
+    <!-- Column 1 — drifts downward on scroll -->
+    <div class="nbhd-col nbhd-col-1">
+      <a class="nbhd-tile" href="https://palosverdesrealty.com/palos-verdes-estates/">
+        <img src="Images/Neighborhood-PVE-3.jpg" alt="Palos Verdes Estates" loading="lazy">
+        <div class="nbhd-tile-label">Palos Verdes Estates</div>
+      </a>
+      <a class="nbhd-tile" href="https://palosverdesrealty.com/manhattan-beach/">
+        <img src="Images/Neighborhood-MB.jpg" alt="Manhattan Beach" loading="lazy">
+        <div class="nbhd-tile-label">Manhattan Beach</div>
+      </a>
+      <a class="nbhd-tile" href="https://palosverdesrealty.com/redondo-beach/">
+        <img src="Images/Neighborhood-RB.jpg" alt="Redondo Beach" loading="lazy">
+        <div class="nbhd-tile-label">Redondo Beach</div>
+      </a>
+    </div>
+
+    <!-- Column 2 — no parallax (steady) -->
+    <div class="nbhd-col nbhd-col-2">
+      <a class="nbhd-tile" href="https://palosverdesrealty.com/rolling-hills-estates/">
+        <img src="Images/Neighborhood-RHE.jpg" alt="Rolling Hills Estates" loading="lazy">
+        <div class="nbhd-tile-label">Rolling Hills Estates</div>
+      </a>
+      <div class="nbhd-text-cell">
+        <h2>Featured<br>Neighborhoods</h2>
+        <p>Select a neighborhood for listings and additional information.</p>
+      </div>
+      <a class="nbhd-tile" href="https://palosverdesrealty.com/hermosa-beach/">
+        <img src="Images/Neighborhood-HB.jpg" alt="Hermosa Beach" loading="lazy">
+        <div class="nbhd-tile-label">Hermosa Beach</div>
+      </a>
+    </div>
+
+    <!-- Column 3 — drifts upward on scroll (opposite of col 1) -->
+    <div class="nbhd-col nbhd-col-3">
+      <a class="nbhd-tile" href="https://palosverdesrealty.com/rancho-palos-verdes/">
+        <img src="Images/Neighborhood-RPV.jpg" alt="Rancho Palos Verdes" loading="lazy">
+        <div class="nbhd-tile-label">Rancho Palos Verdes</div>
+      </a>
+      <a class="nbhd-tile" href="https://palosverdesrealty.com/rolling-hills/">
+        <img src="Images/Neighborhood-RH-1.jpg" alt="Rolling Hills" loading="lazy">
+        <div class="nbhd-tile-label">Rolling Hills</div>
+      </a>
+      <a class="nbhd-tile" href="https://palosverdesrealty.com/hollywood-riviera/">
+        <img src="Images/Neighborhood-HR.jpg" alt="Hollywood Riviera" loading="lazy">
+        <div class="nbhd-tile-label">Hollywood Riviera</div>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+<!-- ============================================================
+     MEET THE TEAM
+============================================================ -->
+<section class="team" id="team">
+
+  <div class="team-ornament-wrap">
+    <h2 class="ornament-heading orn-light"><span>Meet The Team</span></h2>
+  </div>
+
+  <div class="team-banner">
+    <img src="Images/Team-stock-1.jpg" alt="The Palos Verdes Realty Team" loading="lazy">
+  </div>
+
+  <div class="team-grid">
+
+    <div class="reveal">
+      <h3 class="team-name">Bill Davis</h3>
+      <p class="team-bio">Bill Davis is a real estate agent with Palm Realty Boutique in Palos Verdes, California and has been in the real estate business for 15 years. Bill has completed transactions in several areas including Palos Verdes Estates, Rancho Palos Verdes, Rolling Hills Estates, Torrance, Los Angeles and Orange Counties. HomeLight ranks Bill as one of the top listing agents in Palos Verdes Estates and as one of the top 16% of agents who sell homes fast.</p>
+      <a href="#" class="team-read-more">Read More</a>
+      <a href="mailto:billdavishomes@me.com" class="team-email">billdavishomes@me.com</a>
+    </div>
+
+    <div class="reveal" style="transition-delay: 0.2s;">
+      <h3 class="team-name">Keith Kelley</h3>
+      <p class="team-bio">I was born and raised in Southern California. After attending UCSB on a baseball scholarship, I moved to Seattle, WA where I began my career in the mortgage industry as a loan officer. After living in Washington for 3 years while my wife attended Law School, my wife and I moved back to California where I became the in house lender for Keller Williams Realty in Rancho Palos Verdes.</p>
+      <a href="#" class="team-read-more">Read More</a>
+      <a href="mailto:keith@palosverdesrealty.com" class="team-email">keith@palosverdesrealty.com</a>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ============================================================
+     JOIN OUR NETWORK
+============================================================ -->
+<section class="network" id="contact">
+  <div class="wrap">
+    <div class="network-inner">
+
+      <div class="network-copy reveal">
+        <h2 class="section-title" style="font-size:42px;line-height:42px;letter-spacing:3.1px;font-weight:bold;">Join Our<br>Network</h2>
+        <p class="network-text" style="margin-top:28px;">40% of our home sales are off market opportunities, so joining our network gives you access to properties you may not see anywhere else.</p>
+      </div>
+
+      <div class="reveal" style="transition-delay: 0.2s;">
+        <form class="contact-form" name="pvr-contact" method="POST" action="#">
+
+          <div class="form-field">
+            <label for="fname">Name</label>
+            <input type="text" id="fname" name="name" placeholder="First and Last" autocomplete="name">
+          </div>
+
+          <div class="form-field">
+            <label for="femail">Email</label>
+            <input type="email" id="femail" name="email" placeholder="Email" autocomplete="email">
+          </div>
+
+          <div class="form-field">
+            <label for="fcity">City of Interest</label>
+            <input type="text" id="fcity" name="city" placeholder="City of Interest">
+          </div>
+
+          <div class="form-field">
+            <label for="fmessage">Message</label>
+            <textarea id="fmessage" name="message" placeholder="Message"></textarea>
+          </div>
+
+          <button type="submit" class="form-submit">Send</button>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- Social icons bar before footer -->
+<div class="social-bar">
+  <div class="social-bar-inner">
+    <div class="social-bar-line"></div>
+    <div class="social-bar-icons">
+      <a class="social-bar-icon" href="#" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+      </a>
+      <a class="social-bar-icon" href="#" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/></svg>
+      </a>
+      <a class="social-bar-icon" href="#" aria-label="YouTube">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="white"/></svg>
+      </a>
+      <a class="social-bar-icon" href="#" aria-label="Twitter">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+      </a>
+      <a class="social-bar-icon" href="#" aria-label="Pinterest">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.65 7.86 6.39 9.29-.09-.78-.17-1.98.04-2.83.18-.77 1.22-5.17 1.22-5.17s-.31-.63-.31-1.56c0-1.46.85-2.55 1.9-2.55.9 0 1.33.67 1.33 1.48 0 .9-.58 2.26-.87 3.51-.25 1.05.52 1.9 1.55 1.9 1.86 0 3.11-2.39 3.11-5.22 0-2.15-1.45-3.76-4.08-3.76-2.97 0-4.81 2.22-4.81 4.68 0 .85.25 1.45.64 1.91.18.21.2.3.14.54-.05.17-.15.58-.2.74-.07.25-.28.33-.51.24-1.39-.58-2.04-2.14-2.04-3.9 0-2.88 2.43-6.35 7.25-6.35 3.88 0 6.45 2.81 6.45 5.84 0 3.99-2.22 6.96-5.48 6.96-1.1 0-2.13-.59-2.48-1.26l-.67 2.59c-.24.94-.9 2.12-1.34 2.84C12.07 22 12.04 22 12 22c-5.52 0-10-4.48-10-10S6.48 2 12 2z"/></svg>
+      </a>
+    </div>
+    <div class="social-bar-line"></div>
+  </div>
+</div>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer>
+  <div class="footer-dark">
+    <div class="wrap">
+
+      <div class="footer-logo-area">
+        <a href="#">
+          <img src="Images/PVR-logotype-wht@2x.png" alt="Palos Verdes Realty">
+        </a>
+      </div>
+
+      <div class="footer-cols">
+
+        <div class="footer-left">
+          <p class="footer-dir-label">Get Directions</p>
+          <p class="footer-address">450 Silver Spur Road, Palos Verdes, CA 90275</p>
+          <div class="footer-small-cols">
+            <div>
+              <p class="footer-disclaimer">While some of the listings on our site may not be exclusive, we have ongoing relationships with all of the listing agents.</p>
+              <p class="footer-dre">DRE# Bill Davis 01374451, Keith Kelley 01810798<br>Copyright&copy; 2025 Palos Verdes Realty<br>All Rights Reserved</p>
+            </div>
+            <div>
+              <p class="footer-legal">All material presented herein is intended for information purposes only. While this information is believed to be correct, it is represented subject to errors, omissions, changes or withdrawal without notice. All property information, including, but not limited to square footage, room count, number of bedrooms and the school district in property listings should be verified by your own attorney, architect or zoning expert.</p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <p class="footer-phone"><a href="tel:+13109208812" style="color:inherit;">(310) 920-8812</a></p>
+          <p class="footer-email-link"><a href="mailto:contact@palosverdesrealty.com" style="color:inherit;">contact@palosverdesrealty.com</a></p>
+          <nav class="footer-nav">
+            <a href="#team">Meet the Team</a>
+            <a href="#contact">Contact</a>
+            <a href="#neighborhoods">Neighborhoods</a>
+            <a href="#">Privacy Policy</a>
+          </nav>
+          <p class="footer-attr">Real Estate Website Design by jondean</p>
+          <div class="footer-badges">
+            <img src="Images/Realty_Logos@3x.png" alt="MLS, Equal Housing, Realtor" loading="lazy">
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+
+<!-- ============================================================
+     JAVASCRIPT
+============================================================ -->
+<script>
+'use strict';
+
+/* ─── HERO SLIDER ──────────────────────────────────────── */
+(function () {
+  const slides  = [...document.querySelectorAll('.hero-slide')];
+  const prevBtn = document.getElementById('heroPrev');
+  const nextBtn = document.getElementById('heroNext');
+  const content = document.getElementById('heroContent');
+  const scrollBtn = document.getElementById('heroScrollDown');
+
+  let cur = 0, timer;
+  const DELAY = 7000;
+
+  function go(idx) {
+    slides[cur].classList.remove('active');
+    cur = (idx + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    clearInterval(timer);
+    timer = setInterval(() => go(cur + 1), DELAY);
+  }
+
+  prevBtn.addEventListener('click', () => go(cur - 1));
+  nextBtn.addEventListener('click', () => go(cur + 1));
+
+  // Scroll-down arrow
+  scrollBtn.addEventListener('click', () => {
+    document.getElementById('properties').scrollIntoView({ behavior: 'smooth' });
+  });
+
+  // Swipe
+  let sx = 0;
+  const hero = document.getElementById('hero');
+  hero.addEventListener('touchstart', e => { sx = e.touches[0].clientX; }, { passive: true });
+  hero.addEventListener('touchend', e => {
+    const dx = sx - e.changedTouches[0].clientX;
+    if (Math.abs(dx) > 48) go(cur + (dx > 0 ? 1 : -1));
+  }, { passive: true });
+
+  // Reveal text
+  setTimeout(() => content.classList.add('visible'), 400);
+
+  timer = setInterval(() => go(cur + 1), DELAY);
+})();
+
+
+/* ─── FEATURED PROPERTIES SLIDER ──────────────────────── */
+(function () {
+  const track   = document.getElementById('propTrack');
+  const prevBtn = document.getElementById('propPrev');
+  const nextBtn = document.getElementById('propNext');
+  if (!track) return;
+
+  const cards = [...track.querySelectorAll('.feat-card')];
+  let idx = 0;
+
+  function go(n) {
+    idx = (n + cards.length) % cards.length;
+    track.style.transform = `translateX(-${idx * 100}%)`;
+  }
+
+  prevBtn.addEventListener('click', () => go(idx - 1));
+  nextBtn.addEventListener('click', () => go(idx + 1));
+
+  // Touch swipe
+  let sx = 0;
+  track.addEventListener('touchstart', e => { sx = e.touches[0].clientX; }, { passive: true });
+  track.addEventListener('touchend', e => {
+    const dx = sx - e.changedTouches[0].clientX;
+    if (Math.abs(dx) > 48) go(idx + (dx > 0 ? 1 : -1));
+  }, { passive: true });
+})();
+
+
+
+
+/* ─── SCROLL REVEAL ────────────────────────────────────── */
+(function () {
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  els.forEach(el => io.observe(el));
+})();
+
+
+/* ─── FOREGROUND LAYER PARALLAX + HERO BLUR ────────────── */
+(function () {
+  const heroFg   = document.querySelector('.hero-fg');
+  const heroEl   = document.querySelector('.hero');
+  const slides   = heroEl ? [...heroEl.querySelectorAll('.hero-slide')] : [];
+  const FG_SPEED = 0.45;  /* white layer drifts up at 45% of scroll speed */
+  const MAX_BLUR = 10;    /* px — maximum blur at bottom of hero           */
+
+  function onScroll() {
+    const heroH    = heroEl ? heroEl.offsetHeight : window.innerHeight;
+    const y        = Math.min(window.scrollY, heroH);
+    const progress = y / heroH;
+
+    /* Foreground layer — header + content move as one locked unit */
+    if (heroFg) heroFg.style.transform = 'translateY(' + (-y * FG_SPEED) + 'px)';
+
+    /* Background image blur — starts at 0, grows to MAX_BLUR */
+    const blurPx   = progress * MAX_BLUR;
+    const filterVal = blurPx > 0.05 ? 'blur(' + blurPx.toFixed(2) + 'px)' : '';
+    slides.forEach(function (s) { s.style.filter = filterVal; });
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+})();
+
+
+/* ─── MOBILE NAV OVERLAY ────────────────────────────────── */
+(function () {
+  const hamburger  = document.getElementById('navToggle');
+  const overlay    = document.getElementById('mobileNav');
+  const closeBtn   = document.getElementById('mobileNavClose');
+  const navLinks   = overlay.querySelectorAll('a');
+
+  function openNav() {
+    overlay.classList.add('open');
+    overlay.setAttribute('aria-hidden', 'false');
+    hamburger.classList.add('open');
+    hamburger.setAttribute('aria-label', 'Close menu');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeNav() {
+    overlay.classList.remove('open');
+    overlay.setAttribute('aria-hidden', 'true');
+    hamburger.classList.remove('open');
+    hamburger.setAttribute('aria-label', 'Open menu');
+    document.body.style.overflow = '';
+  }
+
+  hamburger.addEventListener('click', openNav);
+  closeBtn.addEventListener('click', closeNav);
+
+  // Close on any nav link tap
+  navLinks.forEach(link => link.addEventListener('click', closeNav));
+
+  // Close on Escape key
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeNav();
+  });
+})();
+
+
+/* ─── NEIGHBORHOODS COLUMN PARALLAX ────────────────────── */
+(function () {
+  const section = document.querySelector('.neighborhoods');
+  if (!section) return;
+  const col1 = section.querySelector('.nbhd-col-1');
+  const col3 = section.querySelector('.nbhd-col-3');
+  if (!col1 || !col3) return;
+
+  let ticking = false;
+
+  function update() {
+    const rect = section.getBoundingClientRect();
+    const vh   = window.innerHeight;
+    if (rect.bottom < 0 || rect.top > vh) return;
+
+    const mid      = rect.top + rect.height / 2;
+    const progress = (vh / 2 - mid) / (vh / 2 + rect.height / 2);
+    const shift    = progress * 75;   // ±75px max travel
+
+    col1.style.transform = `translateY(${shift}px)`;
+    col3.style.transform = `translateY(${-shift}px)`;
+  }
+
+  // Disable on narrow screens (single-column layout)
+  function maybeRun() {
+    if (window.innerWidth <= 768) {
+      col1.style.transform = '';
+      col3.style.transform = '';
+      return;
+    }
+    update();
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => { maybeRun(); ticking = false; });
+      ticking = true;
+    }
+  }, { passive: true });
+
+  window.addEventListener('resize', maybeRun, { passive: true });
+
+  maybeRun(); // run once on load
+})();
+</script>
+
+</body>
+</html>
