@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neighborhoods | The Davis Group</title>
+  <link rel="icon" type="image/png" href="Images/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="components/shared.css">
+
+  <style>
+
+    /* =============================================
+       PAGE HERO  (full-height, matches home page treatment)
+    ============================================= */
+    .page-hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      overflow: hidden;
+    }
+
+    /* Background image layer */
+    .page-hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .page-hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 35%;
+      will-change: filter;
+    }
+
+    .page-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(41,43,51,0.25) 0%,
+        rgba(41,43,51,0.05) 45%,
+        rgba(41,43,51,0.55) 100%
+      );
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Foreground layer — header + content scroll together (parallax) */
+    .page-hero-fg {
+      position: absolute;
+      inset: 0;
+      z-index: 5;
+      pointer-events: none;
+      will-change: transform;
+    }
+    .page-hero-fg > * { pointer-events: auto; }
+
+    .page-hero-content {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      text-align: center;
+      color: var(--white);
+      padding: 0 24px 10vh;
+    }
+
+    .page-hero-eyebrow {
+      font-family: var(--font-nav);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .page-hero-title {
+      font-family: var(--font-serif);
+      font-size: 53px;
+      font-weight: 400;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      line-height: 1.08;
+      margin-bottom: 20px;
+    }
+
+    .page-hero-rule {
+      width: 44px;
+      height: 1px;
+      background: var(--accent);
+      margin: 0 auto;
+    }
+
+    /* Per-line fade-down entrance — matches home page */
+    .hero-line-1,
+    .hero-line-2,
+    .hero-tagline {
+      display: block;
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: opacity 0.75s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  transform 0.75s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .hero-tagline {
+      font-family: var(--font-nav);
+      font-size: 15px;
+      font-weight: 400;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .hero-rule-fade {
+      opacity: 0;
+      transition: opacity 0.75s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transition-delay: 0.65s;
+    }
+    .page-hero-content.visible .hero-line-1  { opacity: 1; transform: none; transition-delay: 0.10s; }
+    .page-hero-content.visible .hero-line-2  { opacity: 1; transform: none; transition-delay: 0.32s; }
+    .page-hero-content.visible .hero-tagline { opacity: 0.8; transform: none; transition-delay: 0.54s; }
+    .page-hero-content.visible .hero-rule-fade { opacity: 1; }
+
+    /* Scroll-down chevron */
+    .hero-scroll-down {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      color: var(--white);
+      opacity: 0.7;
+      animation: bounce-down 2.2s ease-in-out infinite;
+      transition: opacity var(--ease);
+    }
+    .hero-scroll-down:hover { opacity: 1; }
+    .hero-scroll-down svg {
+      width: 28px;
+      height: 28px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    @keyframes bounce-down {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* =============================================
+       INTRO STRIP
+    ============================================= */
+    .nbhd-intro {
+      background: var(--white);
+      padding: 80px 40px 72px;
+      text-align: center;
+    }
+
+    .nbhd-intro-inner {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .nbhd-intro-title {
+      font-family: var(--font-serif);
+      font-size: clamp(22px, 3vw, 34px);
+      font-weight: 400;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--dark);
+      line-height: 1.2;
+      margin-bottom: 24px;
+    }
+
+    .nbhd-intro-body {
+      font-family: var(--font-nav);
+      font-size: 15px;
+      font-weight: 300;
+      letter-spacing: 0.3px;
+      color: var(--gray);
+      line-height: 2;
+    }
+
+    /* =============================================
+       NEIGHBORHOOD CARDS — alternating rows
+    ============================================= */
+    .nbhd-cards { background: var(--light); }
+
+    .nbhd-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 520px;
+      overflow: hidden;
+    }
+
+    /* Even cards: image on right */
+    .nbhd-card:nth-child(even) { direction: rtl; }
+    .nbhd-card:nth-child(even) > * { direction: ltr; }
+
+    .nbhd-card-img {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nbhd-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.9s ease;
+    }
+
+    .nbhd-card:hover .nbhd-card-img img {
+      transform: scale(1.04);
+    }
+
+    .nbhd-card-body {
+      background: var(--white);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 64px 72px;
+    }
+
+    /* Slightly lighter bg on alternating cards */
+    .nbhd-card:nth-child(even) .nbhd-card-body {
+      background: var(--light);
+    }
+
+    .nbhd-card-label {
+      font-family: var(--font-nav);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+
+    .nbhd-card-name {
+      font-family: var(--font-serif);
+      font-size: clamp(24px, 2.8vw, 38px);
+      font-weight: 400;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--dark);
+      line-height: 1.15;
+      margin-bottom: 6px;
+    }
+
+    .nbhd-card-rule {
+      width: 32px;
+      height: 1px;
+      background: var(--accent);
+      margin: 18px 0 22px;
+    }
+
+    .nbhd-card-desc {
+      font-family: var(--font-nav);
+      font-size: 14px;
+      font-weight: 300;
+      letter-spacing: 0.3px;
+      color: var(--gray);
+      line-height: 2;
+      margin-bottom: 32px;
+    }
+
+    .nbhd-card-highlights {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 20px;
+      margin-bottom: 36px;
+    }
+
+    .nbhd-card-highlight {
+      font-family: var(--font-nav);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nbhd-card-highlight::before {
+      content: '';
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .nbhd-card-cta {
+      font-family: var(--font-nav);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      border: 1px solid var(--dark);
+      padding: 13px 44px;
+      color: var(--dark);
+      display: inline-block;
+      align-self: flex-start;
+      transition: background var(--ease), color var(--ease);
+    }
+    .nbhd-card-cta:hover { background: var(--dark); color: var(--white); }
+
+    /* =============================================
+       RESPONSIVE
+    ============================================= */
+    @media (max-width: 1024px) {
+      .nbhd-card { grid-template-columns: 1fr 1fr; min-height: 460px; }
+      .nbhd-card-body { padding: 48px 44px; }
+    }
+
+    @media (max-width: 768px) {
+      .page-hero-title { font-size: 42px; letter-spacing: 4px; }
+      .nbhd-intro { padding: 56px 20px 48px; }
+      .nbhd-card {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        direction: ltr !important;
+      }
+      .nbhd-card:nth-child(even) > * { direction: ltr; }
+      .nbhd-card-img { height: 280px; }
+      .nbhd-card-body { padding: 40px 28px 48px; }
+      .nbhd-card-cta { align-self: stretch; text-align: center; }
+    }
+  </style>
+</head>
+
+<body>
+
+
+
+<!-- ============================================================
+     PAGE HERO  (header lives inside the foreground layer)
+============================================================ -->
+<section class="page-hero" id="pageHero">
+
+  <!-- Background image layer -->
+  <div class="page-hero-bg">
+    <img src="Images/AdobeStock_211065932.jpeg" alt="Palos Verdes and Beach Cities Aerial View" id="heroBgImg">
+  </div>
+
+  <div class="page-hero-overlay"></div>
+
+  <!-- Foreground layer — header + text drift together on scroll -->
+  <div class="page-hero-fg" id="pageHeroFg">
+
+    <div id="header-mount"></div>
+
+    <!-- Hero text -->
+    <div class="page-hero-content" id="heroContent">
+      <h1 class="page-hero-title">
+        <span class="hero-line-1">Our</span>
+        <span class="hero-line-2">Neighborhoods</span>
+      </h1>
+      <p class="hero-tagline">Find the perfect Los Angeles South Bay neighborhood</p>
+    </div>
+
+    <!-- Scroll-down chevron -->
+    <button class="hero-scroll-down" id="heroScrollDown" aria-label="Scroll down">
+      <svg viewBox="0 0 24 24"><polyline points="4 9 12 17 20 9"/></svg>
+    </button>
+
+  </div><!-- /.page-hero-fg -->
+
+</section>
+
+
+<!-- ============================================================
+     INTRO
+============================================================ -->
+<div class="nbhd-intro">
+  <div class="nbhd-intro-inner reveal">
+    <span class="section-label">Where You Belong</span>
+    <h2 class="nbhd-intro-title">The Peninsula &amp; Beyond</h2>
+    <p class="nbhd-intro-body">From the clifftop estates of Palos Verdes to the sun-washed strands of the Beach Cities, each neighborhood carries its own distinct character. We know these communities intimately — and we'll help you find the one that feels like home.</p>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     NEIGHBORHOOD CARDS
+============================================================ -->
+<div class="nbhd-cards">
+
+  <!-- 1. Palos Verdes Estates -->
+  <article class="nbhd-card reveal">
+    <div class="nbhd-card-img">
+      <img src="Images/Neighborhood-PVE-3.jpg" alt="Palos Verdes Estates" loading="lazy">
+    </div>
+    <div class="nbhd-card-body">
+      <span class="nbhd-card-label">Palos Verdes Peninsula</span>
+      <h2 class="nbhd-card-name">Palos Verdes<br>Estates</h2>
+      <div class="nbhd-card-rule"></div>
+      <p class="nbhd-card-desc">The most prestigious of the four peninsula communities, Palos Verdes Estates offers breathtaking clifftop properties, sweeping ocean views, and tree-lined streets with strict architectural controls. Home to the Palos Verdes Golf Club and some of Southern California's most coveted addresses.</p>
+      <div class="nbhd-card-highlights">
+        <span class="nbhd-card-highlight">Ocean Views</span>
+        <span class="nbhd-card-highlight">Equestrian Trails</span>
+        <span class="nbhd-card-highlight">Top-Rated Schools</span>
+        <span class="nbhd-card-highlight">Golf Course Access</span>
+      </div>
+      <a href="palos-verdes-estates.html" class="nbhd-card-cta">Explore Neighborhood</a>
+    </div>
+  </article>
+
+  <!-- 2. Rancho Palos Verdes -->
+  <article class="nbhd-card reveal">
+    <div class="nbhd-card-img">
+      <img src="Images/Neighborhood-RPV.jpg" alt="Rancho Palos Verdes" loading="lazy">
+    </div>
+    <div class="nbhd-card-body">
+      <span class="nbhd-card-label">Palos Verdes Peninsula</span>
+      <h2 class="nbhd-card-name">Rancho Palos<br>Verdes</h2>
+      <div class="nbhd-card-rule"></div>
+      <p class="nbhd-card-desc">The largest of the four Peninsula communities, Rancho Palos Verdes spans dramatic coastal bluffs, scenic nature preserves, and diverse hillside neighborhoods. From the luxury resort Terranea to rugged oceanfront trails, it blends natural beauty with residential refinement at a range of price points.</p>
+      <div class="nbhd-card-highlights">
+        <span class="nbhd-card-highlight">Coastal Bluffs</span>
+        <span class="nbhd-card-highlight">Nature Preserve</span>
+        <span class="nbhd-card-highlight">Diverse Prices</span>
+        <span class="nbhd-card-highlight">Terranea Resort</span>
+      </div>
+      <a href="rancho-palos-verdes.html" class="nbhd-card-cta">Explore Neighborhood</a>
+    </div>
+  </article>
+
+  <!-- 3. Rolling Hills -->
+  <article class="nbhd-card reveal">
+    <div class="nbhd-card-img">
+      <img src="Images/Neighborhood-RH-1.jpg" alt="Rolling Hills" loading="lazy">
+    </div>
+    <div class="nbhd-card-body">
+      <span class="nbhd-card-label">Palos Verdes Peninsula</span>
+      <h2 class="nbhd-card-name">Rolling<br>Hills</h2>
+      <div class="nbhd-card-rule"></div>
+      <p class="nbhd-card-desc">One of the most exclusive gated communities in Southern California, Rolling Hills is a private city of ranch-style estates on expansive lots. With its own security patrol, miles of dedicated equestrian trails, and strict development codes, it offers an unmatched combination of privacy, space, and panoramic views.</p>
+      <div class="nbhd-card-highlights">
+        <span class="nbhd-card-highlight">Gated Community</span>
+        <span class="nbhd-card-highlight">Ranch Estates</span>
+        <span class="nbhd-card-highlight">Private Roads</span>
+        <span class="nbhd-card-highlight">Panoramic Views</span>
+      </div>
+      <a href="rolling-hills.html" class="nbhd-card-cta">Explore Neighborhood</a>
+    </div>
+  </article>
+
+  <!-- 4. Rolling Hills Estates -->
+  <article class="nbhd-card reveal">
+    <div class="nbhd-card-img">
+      <img src="Images/Neighborhood-RHE.jpg" alt="Rolling Hills Estates" loading="lazy">
+    </div>
+    <div class="nbhd-card-body">
+      <span class="nbhd-card-label">Palos Verdes Peninsula</span>
+      <h2 class="nbhd-card-name">Rolling Hills<br>Estates</h2>
+      <div class="nbhd-card-rule"></div>
+      <p class="nbhd-card-desc">Nestled between Palos Verdes Estates and Rancho Palos Verdes, Rolling Hills Estates offers a welcoming blend of equestrian charm and suburban comfort. With top-rated schools, vibrant community programs, and easy access to the Peninsula's amenities, it's a perennial favorite among families.</p>
+      <div class="nbhd-card-highlights">
+        <span class="nbhd-card-highlight">Family-Friendly</span>
+        <span class="nbhd-card-highlight">Equestrian Trails</span>
+        <span class="nbhd-card-highlight">Top Schools</span>
+        <span class="nbhd-card-highlight">Quiet Streets</span>
+      </div>
+      <a href="rolling-hills-estates.html" class="nbhd-card-cta">Explore Neighborhood</a>
+    </div>
+  </article>
+
+  <!-- 5. Manhattan Beach -->
+  <article class="nbhd-card reveal">
+    <div class="nbhd-card-img">
+      <img src="Images/Neighborhood-MB.jpg" alt="Manhattan Beach" loading="lazy">
+    </div>
+    <div class="nbhd-card-body">
+      <span class="nbhd-card-label">Beach Cities</span>
+      <h2 class="nbhd-card-name">Manhattan<br>Beach</h2>
+      <div class="nbhd-card-rule"></div>
+      <p class="nbhd-card-desc">One of the most sought-after coastal communities in Los Angeles County, Manhattan Beach combines a vibrant downtown, iconic sand volleyball courts, and impeccably maintained neighborhoods. The Strand is lined with exceptional homes, while Downtown MB offers a walkable mix of world-class restaurants and boutiques.</p>
+      <div class="nbhd-card-highlights">
+        <span class="nbhd-card-highlight">The Strand</span>
+        <span class="nbhd-card-highlight">Walkable Downtown</span>
+        <span class="nbhd-card-highlight">Award-Winning Schools</span>
+        <span class="nbhd-card-highlight">Vibrant Dining</span>
+      </div>
+      <a href="manhattan-beach.html" class="nbhd-card-cta">Explore Neighborhood</a>
+    </div>
+  </article>
+
+  <!-- 6. Hermosa Beach -->
+  <article class="nbhd-card reveal">
+    <div class="nbhd-card-img">
+      <img src="Images/Neighborhood-HB.jpg" alt="Hermosa Beach" loading="lazy">
+    </div>
+    <div class="nbhd-card-body">
+      <span class="nbhd-card-label">Beach Cities</span>
+      <h2 class="nbhd-card-name">Hermosa<br>Beach</h2>
+      <div class="nbhd-card-rule"></div>
+      <p class="nbhd-card-desc">With its lively pier, wide sandy beach, and energetic community, Hermosa Beach captures everything people love about Southern California coastal living. The compact city is walkable and bikeable, centered around The Strand and Pier Avenue, with a warm blend of architectural styles and a spirited local culture.</p>
+      <div class="nbhd-card-highlights">
+        <span class="nbhd-card-highlight">Walkable &amp; Bikeable</span>
+        <span class="nbhd-card-highlight">Pier Avenue</span>
+        <span class="nbhd-card-highlight">Beach Lifestyle</span>
+        <span class="nbhd-card-highlight">Close-Knit Community</span>
+      </div>
+      <a href="hermosa-beach.html" class="nbhd-card-cta">Explore Neighborhood</a>
+    </div>
+  </article>
+
+  <!-- 7. Redondo Beach -->
+  <article class="nbhd-card reveal">
+    <div class="nbhd-card-img">
+      <img src="Images/Neighborhood-RB.jpg" alt="Redondo Beach" loading="lazy">
+    </div>
+    <div class="nbhd-card-body">
+      <span class="nbhd-card-label">Beach Cities</span>
+      <h2 class="nbhd-card-name">Redondo<br>Beach</h2>
+      <div class="nbhd-card-rule"></div>
+      <p class="nbhd-card-desc">Anchored by the scenic King Harbor, Redondo Beach offers a distinctive mix of waterfront living, an emerging arts scene, and welcoming family neighborhoods. The multi-tiered Riviera Village draws visitors for dining and shopping, while miles of paved beach path connect the community to neighboring cities.</p>
+      <div class="nbhd-card-highlights">
+        <span class="nbhd-card-highlight">King Harbor</span>
+        <span class="nbhd-card-highlight">Riviera Village</span>
+        <span class="nbhd-card-highlight">Beach Path Access</span>
+        <span class="nbhd-card-highlight">Waterfront Dining</span>
+      </div>
+      <a href="redondo-beach.html" class="nbhd-card-cta">Explore Neighborhood</a>
+    </div>
+  </article>
+
+  <!-- 8. Hollywood Riviera -->
+  <article class="nbhd-card reveal">
+    <div class="nbhd-card-img">
+      <img src="Images/Neighborhood-HR.jpg" alt="Hollywood Riviera" loading="lazy">
+    </div>
+    <div class="nbhd-card-body">
+      <span class="nbhd-card-label">South Bay</span>
+      <h2 class="nbhd-card-name">Hollywood<br>Riviera</h2>
+      <div class="nbhd-card-rule"></div>
+      <p class="nbhd-card-desc">A hidden gem straddling Torrance and Redondo Beach, the Hollywood Riviera offers sweeping views of Santa Monica Bay, charming mid-century architecture, and a secluded residential atmosphere. The neighborhood earned its glamorous nickname in the 1920s when Hollywood stars were drawn to its dramatic setting — and the allure has only grown.</p>
+      <div class="nbhd-card-highlights">
+        <span class="nbhd-card-highlight">Bay Views</span>
+        <span class="nbhd-card-highlight">Mid-Century Homes</span>
+        <span class="nbhd-card-highlight">Hidden Gem</span>
+        <span class="nbhd-card-highlight">Peninsula Access</span>
+      </div>
+      <a href="hollywood-riviera.html" class="nbhd-card-cta">Explore Neighborhood</a>
+    </div>
+  </article>
+
+</div><!-- /.nbhd-cards -->
+
+
+<!-- ============================================================
+     JOIN OUR NETWORK
+============================================================ -->
+<section class="network" id="contact">
+  <div class="wrap">
+    <div class="network-inner">
+
+      <div class="network-copy reveal">
+        <h2 class="section-title" style="font-size:42px;line-height:42px;letter-spacing:3.1px;font-weight:bold;">Join Our<br>Network</h2>
+        <p class="network-text" style="margin-top:28px;">40% of our home sales are off market opportunities, so joining our network gives you access to properties you may not see anywhere else.</p>
+      </div>
+
+      <div class="reveal" style="transition-delay: 0.2s;">
+        <form class="contact-form" name="pvr-contact" method="POST" action="#">
+
+          <div class="form-field">
+            <label for="fname">Name</label>
+            <input type="text" id="fname" name="name" placeholder="First and Last" autocomplete="name">
+          </div>
+
+          <div class="form-field">
+            <label for="femail">Email</label>
+            <input type="email" id="femail" name="email" placeholder="Email" autocomplete="email">
+          </div>
+
+          <div class="form-field">
+            <label for="fcity">City of Interest</label>
+            <input type="text" id="fcity" name="city" placeholder="City of Interest">
+          </div>
+
+          <div class="form-field">
+            <label for="fmessage">Message</label>
+            <textarea id="fmessage" name="message" placeholder="Message"></textarea>
+          </div>
+
+          <button type="submit" class="form-submit">Send</button>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<div id="footer-mount"></div>
+
+
+<!-- ============================================================
+     JAVASCRIPT
+============================================================ -->
+<script>
+'use strict';
+
+/* ─── HERO TEXT ENTRANCE ────────────────────────────────── */
+(function () {
+  const content = document.getElementById('heroContent');
+  setTimeout(() => content.classList.add('visible'), 400);
+})();
+
+
+/* ─── SCROLL-DOWN CHEVRON ───────────────────────────────── */
+(function () {
+  const btn = document.getElementById('heroScrollDown');
+  if (btn) {
+    btn.addEventListener('click', () => {
+      document.querySelector('.nbhd-intro').scrollIntoView({ behavior: 'smooth' });
+    });
+  }
+})();
+
+
+/* ─── FOREGROUND PARALLAX + BACKGROUND BLUR ────────────── */
+(function () {
+  const heroFg  = document.getElementById('pageHeroFg');
+  const heroEl  = document.getElementById('pageHero');
+  const bgImg   = document.getElementById('heroBgImg');
+  const FG_SPEED = 0.45;
+  const MAX_BLUR = 10;
+
+  function onScroll() {
+    const heroH    = heroEl ? heroEl.offsetHeight : window.innerHeight;
+    const y        = Math.min(window.scrollY, heroH);
+    const progress = y / heroH;
+
+    if (heroFg) heroFg.style.transform = 'translateY(' + (-y * FG_SPEED) + 'px)';
+
+    const blurPx = progress * MAX_BLUR;
+    if (bgImg) bgImg.style.filter = blurPx > 0.05 ? 'blur(' + blurPx.toFixed(2) + 'px)' : '';
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+})();
+
+
+/* ─── SCROLL REVEAL ────────────────────────────────────── */
+(function () {
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  els.forEach(el => io.observe(el));
+})();
+
+
+</script>
+
+<script src="components/header.js"></script>
+<script src="components/footer.js"></script>
+
+</body>
+</html>
