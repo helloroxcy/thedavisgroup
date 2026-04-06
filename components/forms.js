@@ -2,12 +2,10 @@
 
 /* ============================================================
    CONTACT FORM HANDLER — The Davis Group
-   Submits to Formsubmit.co and shows an in-page confirmation.
+   Submits via Netlify Forms AJAX and shows an in-page confirmation.
    Loaded automatically on every page via footer.js.
 ============================================================ */
 (function () {
-
-  var ENDPOINT = 'https://formsubmit.co/ajax/billdavishomes@me.com';
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -18,24 +16,25 @@
     btn.textContent = 'Sending\u2026';
     btn.disabled    = true;
 
-    fetch(ENDPOINT, {
+    /* Netlify Forms AJAX: POST url-encoded to the same origin */
+    var params = new URLSearchParams();
+    params.append('form-name', form.getAttribute('name') || 'contact');
+    params.append('name',    fd.get('name')    || '');
+    params.append('email',   fd.get('email')   || '');
+    params.append('city',    fd.get('city')    || '');
+    params.append('message', fd.get('message') || '');
+    params.append('_honey',  fd.get('_honey')  || '');
+
+    fetch('/', {
       method:  'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({
-        name:     fd.get('name')    || '',
-        email:    fd.get('email')   || '',
-        city:     fd.get('city')    || '',
-        message:  fd.get('message') || '',
-        _subject: 'New Inquiry \u2014 The Davis Group',
-        _captcha: 'false'
-      })
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body:    params.toString()
     })
-    .then(function (res) { return res.json(); })
-    .then(function (json) {
-      if (json.success === 'true' || json.success === true) {
+    .then(function (res) {
+      if (res.ok) {
         showConfirmation(form);
       } else {
-        throw new Error('Submission rejected');
+        throw new Error('Netlify returned ' + res.status);
       }
     })
     .catch(function () {
@@ -52,7 +51,7 @@
       '<div class="form-confirm-check">&#10003;</div>' +
       '<h3 class="form-confirm-title">Message Received</h3>' +
       '<p class="form-confirm-text">Thank you for reaching out to The Davis Group. ' +
-      'Bill will personally follow up with you soon &mdash; we look forward to ' +
+      'Bill will personally follow up with you soon \u2014 we look forward to ' +
       'helping you find your perfect South Bay home.</p>';
     form.parentNode.replaceChild(conf, form);
     requestAnimationFrame(function () {
@@ -72,12 +71,12 @@
 
   /* Attach to every contact form on the page */
   document.querySelectorAll('.contact-form').forEach(function (form) {
-    /* Honeypot — hides from users, catches bots */
+    /* Honeypot — hidden from users, catches bots */
     var honey = document.createElement('input');
-    honey.type        = 'text';
-    honey.name        = '_honey';
+    honey.type         = 'text';
+    honey.name         = '_honey';
     honey.style.cssText = 'display:none!important';
-    honey.tabIndex    = -1;
+    honey.tabIndex     = -1;
     honey.autocomplete = 'off';
     form.appendChild(honey);
 

@@ -83,7 +83,9 @@
     document.body.style.overflow = '';
   }
 
-  hamburger.addEventListener('click', openNav);
+  hamburger.addEventListener('click', function () {
+    overlay.classList.contains('open') ? closeNav() : openNav();
+  });
   closeBtn.addEventListener('click', closeNav);
   navLinks.forEach(function (link) {
     link.addEventListener('click', closeNav);
