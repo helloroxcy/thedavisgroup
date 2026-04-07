@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Message Sent | The Davis Group</title>
+  <link rel="icon" type="image/png" href="Images/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="components/shared.css">
+  <style>
+    body { background: #292b33; }
+    .success-wrap {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 24px;
+      text-align: center;
+    }
+    .success-check {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      border: 2px solid #c2766a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      color: #c2766a;
+      margin: 0 auto 32px;
+    }
+    .success-title {
+      font-family: 'DidotLTStd-Headline-1', Georgia, serif;
+      font-size: clamp(32px, 5vw, 52px);
+      color: #ffffff;
+      margin-bottom: 20px;
+      line-height: 1.15;
+    }
+    .success-text {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.65);
+      letter-spacing: 0.4px;
+      line-height: 2;
+      max-width: 440px;
+      margin: 0 auto 48px;
+    }
+    .success-back {
+      display: inline-block;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #ffffff;
+      border: 1px solid rgba(255,255,255,0.4);
+      padding: 14px 36px;
+      text-decoration: none;
+      transition: background 0.3s ease, border-color 0.3s ease;
+    }
+    .success-back:hover {
+      background: #c2766a;
+      border-color: #c2766a;
+    }
+  </style>
+</head>
+<body>
+  <div id="header-mount"></div>
+
+  <div class="success-wrap">
+    <div class="success-check">&#10003;</div>
+    <h1 class="success-title">Message Received</h1>
+    <p class="success-text">
+      Thank you for reaching out to The Davis Group.
+      Bill will personally follow up with you soon —
+      we look forward to helping you find your perfect
+      South Bay home.
+    </p>
+    <a href="index.html" class="success-back">Back to Home</a>
+  </div>
+
+  <div id="footer-mount"></div>
+  <script src="components/header.js"></script>
+  <script src="components/footer.js"></script>
+</body>
+</html>

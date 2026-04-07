@@ -52,6 +52,10 @@ body {
   overflow-x: hidden;
 }
 
+p, li, .nbhd-highlight-desc, .nbhd-about-text, .nbhd-intro-text {
+  text-wrap: pretty;
+}
+
 img { display: block; max-width: 100%; }
 
 a { text-decoration: none; color: inherit; transition: color var(--ease); }
@@ -547,7 +551,7 @@ footer { background: transparent; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top;
+  object-position: center bottom;
 }
 .mobile-nav-logo {
   position: absolute;
