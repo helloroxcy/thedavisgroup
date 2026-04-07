@@ -286,6 +286,7 @@ a { text-decoration: none; color: inherit; transition: color var(--ease); }
 }
 .social-bar-icon:hover { opacity: 0.6; }
 .social-bar-icon svg { width: 29px; height: 29px; display: block; }
+.social-bar-icon[aria-label="LinkedIn"] svg { width: 33px; height: 33px; }
 
 /* =============================================
    JOIN OUR NETWORK / CONTACT FORM
