@@ -65,7 +65,7 @@
     var msg = document.createElement('p');
     msg.className = 'form-error-msg';
     msg.style.cssText = 'margin-top:16px;font-family:var(--font-nav);font-size:13px;color:rgba(255,100,80,0.9);letter-spacing:0.3px;';
-    msg.textContent = 'Something went wrong. Please email us directly at billdavishomes@me.com';
+    msg.textContent = 'Something went wrong. Please email us directly at jondean01@gmail.com';
     form.appendChild(msg);
   }
 

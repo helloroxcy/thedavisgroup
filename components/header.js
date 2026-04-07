@@ -13,11 +13,10 @@
   var mobileNavHTML = '\
 <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation" aria-hidden="true">\
   <div class="mobile-nav-hero">\
-    <img src="Images/Drone PV 1920x1200.jpg" alt="" aria-hidden="true">\
+    <img src="Images/AdobeStock_211065932.jpeg" alt="" aria-hidden="true">\
     <div class="mobile-nav-logo">\
       <img src="Images/TDG-logo-w10bg.svg" alt="The Davis Group">\
     </div>\
-    <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close menu">&#215;</button>\
   </div>\
   <div class="mobile-nav-home">\
     <a href="index.html">Home</a>\
@@ -43,13 +42,18 @@
     <ul class="nav-group" style="justify-content: flex-end;">\
       <li><a href="index.html#contact">Contact</a></li>\
     </ul>\
-    <button class="nav-toggle" id="navToggle" aria-label="Open menu">\
-      <span></span><span></span>\
-    </button>\
   </div>\
 </header>';
 
-  /* ── Inject mobile nav at very top of <body> ── */
+  /* ── Hamburger injected directly into <body> so position:fixed
+        is relative to the true viewport, not any transformed layer ── */
+  var hamburgerHTML = '\
+<button class="nav-toggle" id="navToggle" aria-label="Open menu">\
+  <span></span><span></span>\
+</button>';
+
+  /* ── Inject mobile nav + hamburger at very top of <body> ── */
+  document.body.insertAdjacentHTML('afterbegin', hamburgerHTML);
   document.body.insertAdjacentHTML('afterbegin', mobileNavHTML);
 
   /* ── Inject header into mount point ── */
@@ -62,8 +66,7 @@
   /* ── Mobile nav behavior ── */
   var hamburger = document.getElementById('navToggle');
   var overlay   = document.getElementById('mobileNav');
-  var closeBtn  = document.getElementById('mobileNavClose');
-  if (!hamburger || !overlay || !closeBtn) return;
+  if (!hamburger || !overlay) return;
 
   var navLinks = overlay.querySelectorAll('a');
 
@@ -86,7 +89,6 @@
   hamburger.addEventListener('click', function () {
     overlay.classList.contains('open') ? closeNav() : openNav();
   });
-  closeBtn.addEventListener('click', closeNav);
   navLinks.forEach(function (link) {
     link.addEventListener('click', closeNav);
   });
