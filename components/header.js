@@ -22,7 +22,7 @@
     <a href="index.html">Home</a>\
   </div>\
   <div class="mobile-nav-links">\
-    <a href="index.html#team">Meet The Team</a>\
+    <a href="meet-the-team.html">Meet The Team</a>\
     <a href="neighborhoods.html">Neighborhoods</a>\
     <a href="index.html#contact">Contact</a>\
   </div>\
@@ -33,7 +33,7 @@
 <header id="site-header">\
   <div class="header-inner">\
     <ul class="nav-group">\
-      <li><a href="index.html#team">Meet The Team</a></li>\
+      <li><a href="meet-the-team.html">Meet The Team</a></li>\
       <li><a href="neighborhoods.html">Neighborhoods</a></li>\
     </ul>\
     <a class="header-logo" href="index.html">\

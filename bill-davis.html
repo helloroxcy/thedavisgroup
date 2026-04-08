@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bill Davis | The Davis Group</title>
+  <link rel="icon" href="Images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="Images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="Images/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="Images/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="components/shared.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+
+    /* =============================================
+       PAGE HERO
+    ============================================= */
+    .page-hero {
+      position: relative;
+      height: 80vh;
+      min-height: 560px;
+      overflow: hidden;
+    }
+    .page-hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .page-hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+      will-change: filter;
+    }
+    .page-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(41,43,51,0.4) 0%, rgba(41,43,51,0.1) 50%, rgba(41,43,51,0.7) 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+    .page-hero-fg {
+      position: absolute;
+      inset: 0;
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding-bottom: 64px;
+      will-change: transform;
+    }
+    .page-hero-content {
+      text-align: center;
+      color: #fff;
+      padding: 0 24px;
+    }
+    .page-hero-eyebrow {
+      font-family: var(--font-nav);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 14px;
+    }
+    .page-hero-name {
+      font-family: var(--font-serif);
+      font-size: clamp(48px, 7vw, 84px);
+      color: #fff;
+      line-height: 1;
+      margin-bottom: 14px;
+    }
+    .page-hero-title {
+      font-family: var(--font-nav);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    /* =============================================
+       PROFILE LAYOUT
+    ============================================= */
+    .profile-section {
+      background: var(--white);
+      padding: 96px 24px;
+    }
+    .profile-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 72px;
+      align-items: start;
+    }
+
+    /* Photo column */
+    .profile-photo-col {}
+    .profile-photo {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      background: var(--dark);
+      margin-bottom: 28px;
+    }
+    .profile-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+    .profile-contact-card {
+      border: 1px solid var(--border);
+      padding: 28px;
+    }
+    .profile-contact-label {
+      font-family: var(--font-nav);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .profile-contact-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+      font-family: var(--font-nav);
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--dark);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    a.profile-contact-item:hover { color: var(--accent); }
+    .profile-contact-item i {
+      width: 16px;
+      color: var(--accent);
+      font-size: 13px;
+    }
+    .profile-dre {
+      font-family: var(--font-nav);
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      color: var(--gray);
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* Bio column */
+    .profile-bio-col {}
+    .profile-bio-text {
+      font-family: var(--font-nav);
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--gray);
+      line-height: 2.1;
+      margin-bottom: 24px;
+      text-wrap: pretty;
+    }
+
+    /* Stats strip */
+    .profile-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin: 48px 0;
+    }
+    .profile-stat {
+      background: var(--dark);
+      padding: 32px 24px;
+      text-align: center;
+    }
+    .profile-stat-number {
+      font-family: var(--font-serif);
+      font-size: 42px;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .profile-stat-label {
+      font-family: var(--font-nav);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    /* Credentials */
+    .profile-credentials {
+      margin-top: 48px;
+    }
+    .profile-credentials-title {
+      font-family: var(--font-nav);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--dark);
+      margin-bottom: 20px;
+    }
+    .profile-credential-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 14px;
+      font-family: var(--font-nav);
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--gray);
+      line-height: 1.7;
+    }
+    .profile-credential-item i {
+      color: var(--accent);
+      font-size: 12px;
+      margin-top: 3px;
+      flex-shrink: 0;
+    }
+
+    /* Back link */
+    .profile-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-nav);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--gray);
+      text-decoration: none;
+      margin-bottom: 52px;
+      transition: color 0.3s ease;
+    }
+    .profile-back:hover { color: var(--accent); }
+
+    /* =============================================
+       RESPONSIVE
+    ============================================= */
+    @media (max-width: 900px) {
+      .profile-inner { grid-template-columns: 1fr; gap: 48px; }
+      .profile-photo { aspect-ratio: 4 / 3; }
+      .profile-stats { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 560px) {
+      .profile-stats { grid-template-columns: 1fr; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <div id="header-mount"></div>
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="page-hero-bg">
+      <img src="Images/AdobeStock_223006447.jpeg" alt="Palos Verdes" id="heroBgImg">
+    </div>
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-fg" id="heroFg">
+      <div class="page-hero-content">
+        <p class="page-hero-eyebrow">The Davis Group</p>
+        <h1 class="page-hero-name">Bill Davis</h1>
+        <p class="page-hero-title">Founding Partner &nbsp;·&nbsp; DRE# 01374451</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROFILE -->
+  <section class="profile-section">
+    <div style="max-width:1100px; margin: 0 auto;">
+      <a href="meet-the-team.html" class="profile-back reveal"><i class="fas fa-arrow-left"></i> Meet The Team</a>
+      <h2 class="reveal" style="font-family:var(--font-serif);font-size:42px;color:var(--dark);margin-bottom:6px;">Bill Davis</h2>
+      <p class="reveal" style="font-family:var(--font-nav);font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:48px;">Founding Partner</p>
+    </div>
+    <div class="profile-inner">
+
+      <!-- Left: Contact -->
+      <div class="profile-photo-col reveal">
+        <div class="profile-contact-card">
+          <p class="profile-contact-label">Get In Touch</p>
+          <a href="tel:+13109208812" class="profile-contact-item">
+            <i class="fas fa-phone"></i> (310) 920-8812
+          </a>
+          <a href="mailto:billdavishomes@me.com" class="profile-contact-item">
+            <i class="fas fa-envelope"></i> billdavishomes@me.com
+          </a>
+          <a href="index.html#contact" class="profile-contact-item">
+            <i class="fas fa-paper-plane"></i> Send a Message
+          </a>
+          <p class="profile-dre">DRE# Bill Davis 01374451</p>
+        </div>
+      </div>
+
+      <!-- Right: Bio -->
+      <div class="profile-bio-col reveal" style="transition-delay: 0.15s;">
+        <p class="profile-bio-text">Bill Davis has been helping clients navigate the Palos Verdes Peninsula and Beach Cities real estate market for over 15 years. Known for his integrity, market insight, and an extensive off-market network, Bill has completed transactions across Palos Verdes Estates, Rancho Palos Verdes, Rolling Hills Estates, Torrance, Los Angeles, and Orange Counties.</p>
+
+        <p class="profile-bio-text">HomeLight ranks Bill as one of the top listing agents in Palos Verdes Estates and among the top 16% of agents in the region who sell homes fast, a reflection of his strategic approach and the trust his clients place in him.</p>
+
+        <p class="profile-bio-text">What sets Bill apart is his deep community ties and the relationships he has built with agents, developers, and homeowners throughout the Peninsula. Nearly 40% of his transactions are off-market, giving his buyers access to properties they simply cannot find anywhere else.</p>
+
+        <!-- Stats -->
+        <div class="profile-stats">
+          <div class="profile-stat">
+            <div class="profile-stat-number">15+</div>
+            <div class="profile-stat-label">Years Experience</div>
+          </div>
+          <div class="profile-stat">
+            <div class="profile-stat-number">40%</div>
+            <div class="profile-stat-label">Off-Market Sales</div>
+          </div>
+          <div class="profile-stat">
+            <div class="profile-stat-number">Top 16%</div>
+            <div class="profile-stat-label">Fastest Sellers</div>
+          </div>
+        </div>
+
+        <!-- Credentials -->
+        <div class="profile-credentials">
+          <p class="profile-credentials-title">Credentials &amp; Recognition</p>
+          <div class="profile-credential-item">
+            <i class="fas fa-award"></i>
+            <span>Ranked top listing agent in Palos Verdes Estates by HomeLight</span>
+          </div>
+          <div class="profile-credential-item">
+            <i class="fas fa-award"></i>
+            <span>Top 16% of agents who sell homes fast, HomeLight</span>
+          </div>
+          <div class="profile-credential-item">
+            <i class="fas fa-map-location-dot"></i>
+            <span>Specialist in Palos Verdes Estates, Rancho Palos Verdes, Rolling Hills Estates, and the Beach Cities</span>
+          </div>
+          <div class="profile-credential-item">
+            <i class="fas fa-handshake"></i>
+            <span>Extensive off-market network built over 15+ years of community relationships</span>
+          </div>
+          <div class="profile-credential-item">
+            <i class="fas fa-building"></i>
+            <span>Partner, The Davis Group &nbsp;·&nbsp; Palm Realty Boutique, Palos Verdes</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div id="footer-mount"></div>
+
+  <script src="components/header.js"></script>
+  <script src="components/footer.js"></script>
+  <script>
+    var heroBg  = document.getElementById('heroBgImg');
+    var heroFg  = document.getElementById('heroFg');
+    var ticking = false;
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(function () {
+          var y = window.scrollY;
+          if (heroBg) heroBg.style.transform = 'translateY(' + (y * 0.35) + 'px)';
+          if (heroFg) heroFg.style.transform  = 'translateY(' + (y * 0.45) + 'px)';
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    var reveals = document.querySelectorAll('.reveal');
+    var ro = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    reveals.forEach(function(el) { ro.observe(el); });
+  </script>
+
+</body>
+</html>
