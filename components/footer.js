@@ -67,7 +67,7 @@
             <a href="neighborhoods.html">Neighborhoods</a>\
             <a href="privacy-policy.html">Privacy Policy</a>\
           </nav>\
-          <p class="footer-attr">Real Estate Website Design by jondean</p>\
+          <p class="footer-attr">Real Estate Website Design by <a href="https://jondeandesign.com" target="_blank" rel="noopener" style="color:inherit;opacity:1;transition:opacity 0.3s ease;" onmouseover="this.style.opacity=\'0.6\'" onmouseout="this.style.opacity=\'1\'">jondean</a></p>\
           <div class="footer-badges">\
             <img src="Images/Realty_Logos@3x.png" alt="MLS, Equal Housing, Realtor" loading="lazy">\
           </div>\
