@@ -445,7 +445,7 @@ footer { background: transparent; }
   margin-bottom: 56px;
 }
 .footer-logo-area img {
-  height: 163px;
+  height: 147px;
   width: auto;
   opacity: 0.85;
   margin: 0 auto;
@@ -630,31 +630,27 @@ footer { background: transparent; }
    SHARED RESPONSIVE RULES
 ============================================= */
 @media (max-width: 1024px) {
-  .nav-group    { display: none; }
-  .nav-toggle   { display: flex; position: fixed; top: 62px; right: 40px; z-index: 210; margin-left: 0; }
+  .nav-group    { visibility: hidden; pointer-events: none; }
+  .nav-toggle   { display: flex; position: absolute; top: 62px; right: 40px; z-index: 210; margin-left: 0; }
   .network-inner { grid-template-columns: 1fr; gap: 52px; }
   .footer-cols  { grid-template-columns: 1fr 1fr; }
+  .mobile-nav   { display: flex; }
 }
 
 @media (max-width: 768px) {
   .wrap { padding: 0 20px; }
   #site-header { padding: 28px 20px; }
-  .header-logo {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  .header-logo img { height: 80px; width: auto; max-width: none; }
+  .header-logo img { height: 92px; width: auto; max-width: none; }
   .nav-toggle { top: 68px; right: 20px; }
   .ornament-heading.orn-light span,
   .ornament-heading.orn-dark span { font-size: 27px; }
   .social-bar { height: 90px; padding: 0 20px; }
-  .footer-logo-area img  { height: 120px; }
+  .footer-logo-area img  { height: 108px; }
   .footer-logo-area      { border-bottom: none; padding-bottom: 32px; }
   .footer-cols           { grid-template-columns: 1fr; gap: 36px; }
   .footer-dark           { padding: 56px 0 40px; }
-  .mobile-nav            { display: flex; }
 }
+
 
 @media (max-width: 480px) {
   .page-hero-title { font-size: 34px; letter-spacing: 2px; }
