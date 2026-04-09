@@ -77,6 +77,11 @@
   });
 
   function openNav() {
+    var siteHeader = document.getElementById('site-header');
+    if (siteHeader) {
+      siteHeader.style.transition = 'opacity 0.35s ease';
+      siteHeader.style.opacity = '0';
+    }
     overlay.classList.add('open');
     overlay.setAttribute('aria-hidden', 'false');
     hamburger.classList.add('open');
@@ -85,6 +90,11 @@
   }
 
   function closeNav() {
+    var siteHeader = document.getElementById('site-header');
+    if (siteHeader) {
+      siteHeader.style.transition = 'opacity 0.35s ease';
+      siteHeader.style.opacity = '1';
+    }
     overlay.classList.remove('open');
     overlay.setAttribute('aria-hidden', 'true');
     hamburger.classList.remove('open');
