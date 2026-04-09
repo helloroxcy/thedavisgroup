@@ -22,6 +22,7 @@
     .page-hero {
       position: relative;
       height: 80vh;
+      height: 80svh; /* iOS Safari fix */
       min-height: 560px;
       overflow: hidden;
     }
@@ -83,6 +84,19 @@
       text-transform: uppercase;
       color: var(--accent);
     }
+
+
+    .page-hero-eyebrow,
+    .page-hero-name,
+    .page-hero-title {
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: opacity 0.75s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  transform 0.75s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .page-hero-content.visible .page-hero-eyebrow { opacity: 1; transform: none; transition-delay: 0.10s; }
+    .page-hero-content.visible .page-hero-name    { opacity: 1; transform: none; transition-delay: 0.32s; }
+    .page-hero-content.visible .page-hero-title   { opacity: 1; transform: none; transition-delay: 0.54s; }
 
     /* =============================================
        PROFILE LAYOUT
@@ -255,7 +269,7 @@
     </div>
     <div class="page-hero-overlay"></div>
     <div class="page-hero-fg" id="heroFg">
-      <div class="page-hero-content">
+      <div class="page-hero-content" id="heroContent">
         <p class="page-hero-eyebrow">The Davis Group</p>
         <h1 class="page-hero-name">Jennifer Sambito</h1>
         <p class="page-hero-title">Sales Associate &nbsp;·&nbsp; BRE# 01328628</p>
@@ -370,6 +384,11 @@
       }
     }
     window.addEventListener('scroll', onScroll, { passive: true });
+
+    /* Hero text reveal */
+    var heroContent = document.getElementById('heroContent');
+    if (heroContent) setTimeout(function() { heroContent.classList.add('visible'); }, 400);
+
 
     var reveals = document.querySelectorAll('.reveal');
     var ro = new IntersectionObserver(function(entries) {

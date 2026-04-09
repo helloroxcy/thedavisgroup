@@ -18,13 +18,11 @@
       <img src="Images/TDG-logo-w10bg.svg" alt="The Davis Group">\
     </div>\
   </div>\
-  <div class="mobile-nav-home">\
-    <a href="index.html">Home</a>\
-  </div>\
   <div class="mobile-nav-links">\
+    <a href="index.html">Home</a>\
     <a href="meet-the-team.html">Meet The Team</a>\
     <a href="neighborhoods.html">Neighborhoods</a>\
-    <a href="index.html#contact">Contact</a>\
+    <a href="contact.html">Contact</a>\
   </div>\
 </nav>';
 
@@ -40,7 +38,7 @@
       <img src="Images/TDG-logo-w10bg.svg" alt="The Davis Group" width="192">\
     </a>\
     <ul class="nav-group" style="justify-content: flex-end;">\
-      <li><a href="index.html#contact">Contact</a></li>\
+      <li><a href="contact.html">Contact</a></li>\
     </ul>\
   </div>\
 </header>';
@@ -69,6 +67,14 @@
   if (!hamburger || !overlay) return;
 
   var navLinks = overlay.querySelectorAll('a');
+
+  /* ── Mark current page as active ── */
+  var currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  if (currentPage === '') currentPage = 'index.html';
+  navLinks.forEach(function (link) {
+    var href = link.getAttribute('href');
+    if (href === currentPage) link.classList.add('active');
+  });
 
   function openNav() {
     overlay.classList.add('open');

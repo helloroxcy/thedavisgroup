@@ -21,6 +21,7 @@
     .page-hero {
       position: relative;
       height: 100vh;
+      height: 100svh; /* iOS Safari fix */
       min-height: 600px;
       overflow: hidden;
     }
@@ -341,10 +342,17 @@
       .nbhd-card-body { padding: 40px 28px 48px; }
       .nbhd-card-cta { align-self: stretch; text-align: center; }
     }
+
+    .mobile-br { display: none; }
+    @media (max-width: 768px) {
+      .mobile-br { display: block; line-height: 0; margin-bottom: 2px; }
+      .nbhd-card-cta { padding: 16px 24px; line-height: 1.6; }
+    }
   </style>
 </head>
 
 <body>
+  <div id="header-mount"></div>
 
 
 
@@ -363,7 +371,6 @@
   <!-- Foreground layer, header + text drift together on scroll -->
   <div class="page-hero-fg" id="pageHeroFg">
 
-    <div id="header-mount"></div>
 
     <!-- Hero text -->
     <div class="page-hero-content" id="heroContent">
@@ -417,7 +424,7 @@
         <span class="nbhd-card-highlight">Top-Rated Schools</span>
         <span class="nbhd-card-highlight">Golf Course Access</span>
       </div>
-      <a href="palos-verdes-estates.html" class="nbhd-card-cta">Explore Palos Verdes Estates</a>
+      <a href="palos-verdes-estates.html" class="nbhd-card-cta">Explore<br class="mobile-br"> Palos Verdes Estates</a>
     </div>
   </article>
 
@@ -437,7 +444,7 @@
         <span class="nbhd-card-highlight">Diverse Prices</span>
         <span class="nbhd-card-highlight">Terranea Resort</span>
       </div>
-      <a href="rancho-palos-verdes.html" class="nbhd-card-cta">Explore Rancho Palos Verdes</a>
+      <a href="rancho-palos-verdes.html" class="nbhd-card-cta">Explore<br class="mobile-br"> Rancho Palos Verdes</a>
     </div>
   </article>
 
@@ -457,7 +464,7 @@
         <span class="nbhd-card-highlight">Private Roads</span>
         <span class="nbhd-card-highlight">Panoramic Views</span>
       </div>
-      <a href="rolling-hills.html" class="nbhd-card-cta">Explore Rolling Hills</a>
+      <a href="rolling-hills.html" class="nbhd-card-cta">Explore<br class="mobile-br"> Rolling Hills</a>
     </div>
   </article>
 
@@ -477,7 +484,7 @@
         <span class="nbhd-card-highlight">Top Schools</span>
         <span class="nbhd-card-highlight">Quiet Streets</span>
       </div>
-      <a href="rolling-hills-estates.html" class="nbhd-card-cta">Explore Rolling Hills Estates</a>
+      <a href="rolling-hills-estates.html" class="nbhd-card-cta">Explore<br class="mobile-br"> Rolling Hills Estates</a>
     </div>
   </article>
 
@@ -497,7 +504,7 @@
         <span class="nbhd-card-highlight">Award-Winning Schools</span>
         <span class="nbhd-card-highlight">Vibrant Dining</span>
       </div>
-      <a href="manhattan-beach.html" class="nbhd-card-cta">Explore Manhattan Beach</a>
+      <a href="manhattan-beach.html" class="nbhd-card-cta">Explore<br class="mobile-br"> Manhattan Beach</a>
     </div>
   </article>
 
@@ -517,7 +524,7 @@
         <span class="nbhd-card-highlight">Beach Lifestyle</span>
         <span class="nbhd-card-highlight">Close-Knit Community</span>
       </div>
-      <a href="hermosa-beach.html" class="nbhd-card-cta">Explore Hermosa Beach</a>
+      <a href="hermosa-beach.html" class="nbhd-card-cta">Explore<br class="mobile-br"> Hermosa Beach</a>
     </div>
   </article>
 
@@ -537,7 +544,7 @@
         <span class="nbhd-card-highlight">Beach Path Access</span>
         <span class="nbhd-card-highlight">Waterfront Dining</span>
       </div>
-      <a href="redondo-beach.html" class="nbhd-card-cta">Explore Redondo Beach</a>
+      <a href="redondo-beach.html" class="nbhd-card-cta">Explore<br class="mobile-br"> Redondo Beach</a>
     </div>
   </article>
 
@@ -557,7 +564,7 @@
         <span class="nbhd-card-highlight">Hidden Gem</span>
         <span class="nbhd-card-highlight">Peninsula Access</span>
       </div>
-      <a href="hollywood-riviera.html" class="nbhd-card-cta">Explore Hollywood Riviera</a>
+      <a href="hollywood-riviera.html" class="nbhd-card-cta">Explore<br class="mobile-br"> Hollywood Riviera</a>
     </div>
   </article>
 

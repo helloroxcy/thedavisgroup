@@ -21,6 +21,7 @@
     .page-hero {
       position: relative;
       height: 100vh;
+      height: 100svh; /* iOS Safari fix */
       min-height: 600px;
       overflow: hidden;
     }
@@ -336,6 +337,7 @@
     ============================================= */
     @media (max-width: 768px) {
       .page-hero-title { font-size: 42px; letter-spacing: 4px; }
+      .page-hero-content { padding: 0 32px 15vh; }
       .nbhd-about { padding: 64px 0; }
       .nbhd-about-grid { grid-template-columns: 1fr; gap: 40px; }
       .nbhd-highlights-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
@@ -352,6 +354,7 @@
 </head>
 
 <body>
+  <div id="header-mount"></div>
 
 <!-- ============================================================
      PAGE HERO
@@ -368,7 +371,6 @@
   <!-- Foreground layer, header + text drift together on scroll -->
   <div class="page-hero-fg" id="pageHeroFg">
 
-    <div id="header-mount"></div>
 
     <!-- Hero text -->
     <div class="page-hero-content" id="heroContent">

@@ -21,6 +21,7 @@
     .page-hero {
       position: relative;
       height: 100vh;
+      height: 100svh; /* iOS Safari fix */
       min-height: 600px;
       overflow: hidden;
     }
@@ -63,31 +64,37 @@
       color: #fff;
       padding: 0 24px;
     }
-    .page-hero-eyebrow {
-      font-family: var(--font-nav);
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 3.5px;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.7);
-      margin-bottom: 14px;
-    }
     .page-hero-title {
       font-family: var(--font-serif);
-      font-size: clamp(42px, 6vw, 72px);
-      color: #fff;
-      line-height: 1.05;
-      margin-bottom: 18px;
+      font-size: 53px;
+      font-weight: 400;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      line-height: 1.08;
+      margin-bottom: 20px;
     }
-    .page-hero-sub {
+    .hero-line-1,
+    .hero-line-2,
+    .hero-tagline {
+      display: block;
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: opacity 0.75s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  transform 0.75s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .hero-tagline {
       font-family: var(--font-nav);
-      font-size: 13px;
-      font-weight: 300;
-      letter-spacing: 0.5px;
-      color: rgba(255,255,255,0.75);
-      max-width: 520px;
-      margin: 0 auto;
-      line-height: 2;
+      font-size: 15px;
+      font-weight: 400;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .page-hero-content.visible .hero-line-1  { opacity: 1; transform: none; transition-delay: 0.10s; }
+    .page-hero-content.visible .hero-line-2  { opacity: 1; transform: none; transition-delay: 0.32s; }
+    .page-hero-content.visible .hero-tagline { opacity: 0.8; transform: none; transition-delay: 0.54s; }
+
+    @media (max-width: 768px) {
+      .page-hero-title { font-size: 42px; letter-spacing: 4px; }
     }
 
     /* =============================================
@@ -205,6 +212,7 @@
        RESPONSIVE
     ============================================= */
     @media (max-width: 768px) {
+      .team-intro { padding: 52px 24px 44px; }
       .team-members-grid { grid-template-columns: 1fr; gap: 56px; }
       .team-card-cta { align-self: stretch; text-align: center; }
     }
@@ -222,11 +230,12 @@
     </div>
     <div class="page-hero-overlay"></div>
     <div class="page-hero-fg" id="heroFg">
-      <div id="header-mount-inner"></div>
-      <div class="page-hero-content">
-        <p class="page-hero-eyebrow">The Davis Group</p>
-        <h1 class="page-hero-title">Meet The Team</h1>
-        <p class="page-hero-sub">Decades of combined experience. Deep local knowledge. A personal commitment to every client.</p>
+      <div class="page-hero-content" id="heroContent">
+        <h1 class="page-hero-title">
+          <span class="hero-line-1">Meet</span>
+          <span class="hero-line-2">The Team</span>
+        </h1>
+        <p class="hero-tagline">Decades of experience &nbsp;·&nbsp; Deep local knowledge</p>
       </div>
     </div>
   </section>
@@ -247,8 +256,8 @@
         <p class="team-card-title">Founding Partner &nbsp;·&nbsp; DRE# 01374451</p>
         <p class="team-card-bio">Bill Davis has been helping clients buy and sell homes in Palos Verdes and the Beach Cities for over 15 years. Recognized by HomeLight as one of the top listing agents in Palos Verdes Estates and among the top 16% of agents who sell homes fast, Bill brings a proven track record and an off-market network that few can match.</p>
         <div class="team-card-links">
-          <a href="bill-davis.html" class="team-card-cta">View Full Profile</a>
           <a href="mailto:billdavishomes@me.com" class="team-card-email">billdavishomes@me.com</a>
+          <a href="bill-davis.html" class="team-card-cta">View Full Profile</a>
         </div>
       </div>
 
@@ -258,8 +267,8 @@
         <p class="team-card-title">Sales Associate &nbsp;·&nbsp; BRE# 01328628</p>
         <p class="team-card-bio">Jennifer brings a rare combination of real estate expertise and nineteen years as a Licensed California Attorney at Law. A four-time award-winning producer at Prudential California Realty and a Law Professor for the nation's leading bar exam preparatory course, Jennifer offers clients an unparalleled depth of knowledge and advocacy.</p>
         <div class="team-card-links">
-          <a href="jennifer-sambito.html" class="team-card-cta">View Full Profile</a>
           <a href="mailto:jennifer.sambito@gmail.com" class="team-card-email">jennifer.sambito@gmail.com</a>
+          <a href="jennifer-sambito.html" class="team-card-cta">View Full Profile</a>
         </div>
       </div>
 
@@ -287,6 +296,10 @@
       }
     }
     window.addEventListener('scroll', onScroll, { passive: true });
+
+    /* Hero text reveal */
+    var heroContent = document.getElementById('heroContent');
+    if (heroContent) setTimeout(function() { heroContent.classList.add('visible'); }, 400);
 
     /* Scroll reveal */
     var reveals = document.querySelectorAll('.reveal');
