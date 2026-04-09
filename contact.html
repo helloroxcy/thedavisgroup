@@ -218,7 +218,7 @@
   ============================================================ -->
   <section class="page-hero">
     <div class="page-hero-bg">
-      <img src="Images/Contact-hero.jpg" alt="Palos Verdes coastal view" id="heroBgImg">
+      <img src="Images/Contact-hero-2x.jpg" alt="Palos Verdes coastal view" id="heroBgImg">
     </div>
     <div class="page-hero-overlay"></div>
     <div class="page-hero-fg" id="heroFg">
@@ -292,21 +292,24 @@
     if (heroContent) setTimeout(function() { heroContent.classList.add('visible'); }, 400);
 
     /* ─── Parallax ─── */
-    var heroBg  = document.getElementById('heroBgImg');
-    var heroFg  = document.getElementById('heroFg');
-    var ticking = false;
+    (function () {
+    var heroEl   = document.querySelector('.page-hero');
+    var heroFg   = document.getElementById('heroFg');
+    var bgImg    = document.getElementById('heroBgImg');
+    var FG_SPEED = 0.45;
+    var MAX_BLUR = 10;
+
     function onScroll() {
-      if (!ticking) {
-        requestAnimationFrame(function () {
-          var y = window.scrollY;
-          if (heroBg) heroBg.style.transform = 'translateY(' + (y * 0.35) + 'px)';
-          if (heroFg) heroFg.style.transform  = 'translateY(' + (y * 0.45) + 'px)';
-          ticking = false;
-        });
-        ticking = true;
-      }
+      var heroH    = heroEl ? heroEl.offsetHeight : window.innerHeight;
+      var y        = Math.min(window.scrollY, heroH);
+      var progress = y / heroH;
+      if (heroFg) heroFg.style.transform = 'translateY(' + (-y * FG_SPEED) + 'px)';
+      var blurPx = progress * MAX_BLUR;
+      if (bgImg) bgImg.style.filter = blurPx > 0.05 ? 'blur(' + blurPx.toFixed(2) + 'px)' : '';
     }
+
     window.addEventListener('scroll', onScroll, { passive: true });
+  })();
 
     /* ─── Scroll reveal ─── */
     var reveals = document.querySelectorAll('.reveal');
