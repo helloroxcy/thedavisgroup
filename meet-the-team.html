@@ -237,6 +237,9 @@
         </h1>
         <p class="hero-tagline">Decades of experience &nbsp;·&nbsp; Deep local knowledge</p>
       </div>
+      <button class="hero-scroll-down" id="heroScrollDown" aria-label="Scroll down">
+        <svg viewBox="0 0 24 24"><polyline points="4 9 12 17 20 9"/></svg>
+      </button>
     </div>
   </section>
 
@@ -306,6 +309,14 @@
     /* Hero text reveal */
     var heroContent = document.getElementById('heroContent');
     if (heroContent) setTimeout(function() { heroContent.classList.add('visible'); }, 400);
+
+    /* Scroll-down arrow */
+    var scrollBtn = document.getElementById('heroScrollDown');
+    if (scrollBtn) {
+      scrollBtn.addEventListener('click', function() {
+        document.querySelector('.team-intro').scrollIntoView({ behavior: 'smooth' });
+      });
+    }
 
     /* Scroll reveal */
     var reveals = document.querySelectorAll('.reveal');

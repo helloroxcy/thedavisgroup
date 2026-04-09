@@ -564,7 +564,7 @@ footer { background: transparent; }
   align-items: center;
   justify-content: center;
 }
-.mobile-nav-logo img { height: 80px; width: auto; }
+.mobile-nav-logo img { height: 92px; width: auto; }
 .mobile-nav-close {
   position: absolute;
   top: 16px;
@@ -610,6 +610,42 @@ footer { background: transparent; }
 }
 
 /* =============================================
+   HERO SCROLL-DOWN CHEVRON
+   Shared across all page heroes.
+============================================= */
+.hero-scroll-down {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  color: var(--white);
+  opacity: 0.7;
+  animation: bounce-down 2.2s ease-in-out infinite;
+  transition: opacity 0.3s ease;
+  pointer-events: auto;
+}
+.hero-scroll-down:hover { opacity: 1; }
+.hero-scroll-down svg {
+  width: 28px;
+  height: 28px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  display: block;
+}
+@keyframes bounce-down {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(6px); }
+}
+
+/* =============================================
    HERO TOP VIGNETTE
    Sits above the photo overlay (z-index 1) but
    below all foreground content (z-index 5+).
@@ -639,9 +675,9 @@ footer { background: transparent; }
 
 @media (max-width: 768px) {
   .wrap { padding: 0 20px; }
-  #site-header { padding: 28px 20px; }
+  #site-header { top: 0; padding: 16px 20px; }
   .header-logo img { height: 92px; width: auto; max-width: none; }
-  .nav-toggle { top: 68px; right: 20px; }
+  .nav-toggle { top: 42px; right: 20px; }
   .ornament-heading.orn-light span,
   .ornament-heading.orn-dark span { font-size: 27px; }
   .social-bar { height: 90px; padding: 0 20px; }

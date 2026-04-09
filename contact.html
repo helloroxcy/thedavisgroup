@@ -228,6 +228,9 @@
         </h1>
         <p class="hero-tagline">We would enjoy hearing from you</p>
       </div>
+      <button class="hero-scroll-down" id="heroScrollDown" aria-label="Scroll down">
+        <svg viewBox="0 0 24 24"><polyline points="4 9 12 17 20 9"/></svg>
+      </button>
     </div>
   </section>
 
@@ -290,6 +293,14 @@
     /* ─── Hero text reveal ─── */
     var heroContent = document.getElementById('heroContent');
     if (heroContent) setTimeout(function() { heroContent.classList.add('visible'); }, 400);
+
+    /* ─── Scroll-down arrow ─── */
+    var scrollBtn = document.getElementById('heroScrollDown');
+    if (scrollBtn) {
+      scrollBtn.addEventListener('click', function() {
+        document.querySelector('.contact-section').scrollIntoView({ behavior: 'smooth' });
+      });
+    }
 
     /* ─── Parallax ─── */
     (function () {

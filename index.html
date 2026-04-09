@@ -28,6 +28,7 @@
     .hero {
       position: relative;
       height: 100vh;
+      height: 100svh; /* iOS Safari fix */
       min-height: 600px;
       overflow: hidden;
     }
@@ -512,6 +513,7 @@
 
     @media (max-width: 768px) {
       .hero-title { font-size: 42px; }
+      .hero-content { padding-bottom: 15vh; }
 
       .hero-btn { display: none; }
 
