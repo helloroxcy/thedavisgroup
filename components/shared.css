@@ -610,6 +610,23 @@ footer { background: transparent; }
 }
 
 /* =============================================
+   HERO TOP VIGNETTE
+   Sits above the photo overlay (z-index 1) but
+   below all foreground content (z-index 5+).
+============================================= */
+.page-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 20%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.10) 0%, transparent 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* =============================================
    SHARED RESPONSIVE RULES
 ============================================= */
 @media (max-width: 1024px) {
