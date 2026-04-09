@@ -535,7 +535,7 @@ footer { background: transparent; }
   display: none;
   position: fixed;
   inset: 0;
-  z-index: 190;
+  z-index: 205;
   flex-direction: column;
   pointer-events: none;
   opacity: 0;
@@ -637,6 +637,10 @@ footer { background: transparent; }
   .footer-cols           { grid-template-columns: 1fr; gap: 36px; }
   .footer-dark           { padding: 56px 0 40px; }
   .mobile-nav            { display: flex; }
+}
+
+@media (max-width: 480px) {
+  .page-hero-title { font-size: 34px; letter-spacing: 2px; }
 }
 
 @media (max-width: 480px) {
