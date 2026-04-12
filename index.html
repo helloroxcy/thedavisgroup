@@ -151,17 +151,34 @@
       text-transform: uppercase;
     }
 
-    /* Arrows — hidden */
-    .hero-btn { display: none; }
+    /* Arrows */
+    .hero-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      width: 46px;
+      height: 46px;
+      border: 1px solid rgba(255,255,255,0.4);
+      background: none;
+      color: var(--white);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background var(--ease), border-color var(--ease);
+    }
+    .hero-btn:hover { background: rgba(255,255,255,0.15); border-color: var(--white); }
+    .hero-btn svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 1.5; }
+    .hero-btn--prev { left: 32px; }
+    .hero-btn--next { right: 32px; }
 
     /* Scroll-down chevron */
     .hero-scroll-down {
       position: absolute;
       bottom: 28px;
-      left: 0;
-      right: 0;
-      width: fit-content;
-      margin: 0 auto;
+      left: 50%;
+      transform: translateX(-50%);
       z-index: 10;
       background: none;
       border: none;
@@ -183,8 +200,8 @@
       stroke-linejoin: round;
     }
     @keyframes bounce-down {
-      0%, 100% { transform: translateY(0); }
-      50%       { transform: translateY(6px); }
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(6px); }
     }
 
     /* =============================================
@@ -238,7 +255,7 @@
       flex: 0 0 100%;
       position: relative;
       overflow: hidden;
-      aspect-ratio: 4 / 3;
+      aspect-ratio: 16 / 10;
     }
     .feat-card img {
       width: 100%;
@@ -498,11 +515,13 @@
       .hero-title { font-size: 42px; }
       .hero-content { padding-bottom: 15vh; }
 
+      .hero-btn { display: none; }
+
       .feat-nav { width: 40px; height: 40px; }
       #propPrev { left: 12px; }
       #propNext { right: 12px; }
 
-      .feat-title { font-size: clamp(30px, 4.5vw, 52px); line-height: 1.1; }
+      .feat-title { font-size: clamp(30px, 4.5vw, 52px); }
       .feat-address { font-size: 13px; }
 
       .neighborhoods { padding: 48px 20px; }
@@ -925,8 +944,7 @@
   const heroEl   = document.querySelector('.hero');
   const slides   = heroEl ? [...heroEl.querySelectorAll('.hero-slide')] : [];
   const FG_SPEED = 0.45;  /* white layer drifts up at 45% of scroll speed */
-  const MAX_BLUR = 10;
-  var isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+  const MAX_BLUR = 10;    /* px, maximum blur at bottom of hero           */
 
   function onScroll() {
     const heroH    = heroEl ? heroEl.offsetHeight : window.innerHeight;
@@ -934,7 +952,7 @@
     const progress = y / heroH;
 
     /* Foreground layer, header + content move as one locked unit */
-    if (heroFg && !isTouchDevice) heroFg.style.transform = 'translateY(' + (-y * FG_SPEED) + 'px)';
+    if (heroFg) heroFg.style.transform = 'translateY(' + (-y * FG_SPEED) + 'px)';
 
     /* Background image blur, starts at 0, grows to MAX_BLUR */
     const blurPx   = progress * MAX_BLUR;

@@ -244,7 +244,7 @@
       <div class="contact-info reveal">
         <h2 class="contact-info-heading">Say Hello</h2>
         <a href="tel:+13109208812" class="contact-info-phone">(310) 920-8812</a>
-        <p class="contact-info-line">Monday – Friday, 9am – 5:30pm</p>
+        <p class="contact-info-line">Monday - Friday, 9am - 5:30pm</p>
         <div class="contact-info-block">
           <p class="contact-info-line">450 Silver Spur Road</p>
           <p class="contact-info-line">Palos Verdes, CA 90275</p>
@@ -309,13 +309,12 @@
     var bgImg    = document.getElementById('heroBgImg');
     var FG_SPEED = 0.45;
     var MAX_BLUR = 10;
-  var isTouchDevice = (\'ontouchstart\' in window) || (navigator.maxTouchPoints > 0);
 
     function onScroll() {
       var heroH    = heroEl ? heroEl.offsetHeight : window.innerHeight;
       var y        = Math.min(window.scrollY, heroH);
       var progress = y / heroH;
-      if (heroFg && !isTouchDevice) heroFg.style.transform = 'translateY(' + (-y * FG_SPEED) + 'px)';
+      if (heroFg) heroFg.style.transform = 'translateY(' + (-y * FG_SPEED) + 'px)';
       var blurPx = progress * MAX_BLUR;
       if (bgImg) bgImg.style.filter = blurPx > 0.05 ? 'blur(' + blurPx.toFixed(2) + 'px)' : '';
     }
