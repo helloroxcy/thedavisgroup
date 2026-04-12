@@ -43,6 +43,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -52,7 +53,6 @@ body {
   color: var(--dark);
   background: var(--white);
   overflow-x: hidden;
-  max-width: 100vw;
 }
 
 p, li, .nbhd-highlight-desc, .nbhd-about-text, .nbhd-intro-text {
@@ -555,7 +555,8 @@ footer { background: transparent; }
   flex-direction: column;
   align-items: center;
   gap: 0;
-  padding: 80px 0 24px; /* top pad clears the X button */
+  margin-top: 80px; /* transparent gap above — hero/logo shows through */
+  padding: 8px 0 24px;
 }
 .mobile-nav-links a {
   display: block;
