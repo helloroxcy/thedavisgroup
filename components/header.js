@@ -12,12 +12,6 @@
   /* ── Mobile nav overlay HTML ── */
   var mobileNavHTML = '\
 <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation" aria-hidden="true">\
-  <div class="mobile-nav-hero">\
-    <img src="Images/AdobeStock_211065932.jpeg" alt="" aria-hidden="true">\
-    <div class="mobile-nav-logo">\
-      <img src="Images/TDG-logo-w10bg.svg" alt="The Davis Group">\
-    </div>\
-  </div>\
   <div class="mobile-nav-links">\
     <a href="index.html">Home</a>\
     <a href="meet-the-team.html">Meet The Team</a>\
