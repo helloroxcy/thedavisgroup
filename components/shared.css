@@ -584,8 +584,10 @@ footer { background: transparent; }
 .hero-scroll-down {
   position: absolute;
   bottom: 28px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  right: 0;
+  width: fit-content;
+  margin: 0 auto;
   z-index: 10;
   background: none;
   border: none;
@@ -609,8 +611,8 @@ footer { background: transparent; }
   display: block;
 }
 @keyframes bounce-down {
-  0%, 100% { transform: translateX(-50%) translateY(0); }
-  50%       { transform: translateX(-50%) translateY(6px); }
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(6px); }
 }
 
 /* =============================================

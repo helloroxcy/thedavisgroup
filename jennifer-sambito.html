@@ -376,12 +376,13 @@
     var bgImg    = document.getElementById('heroBgImg');
     var FG_SPEED = 0.45;
     var MAX_BLUR = 10;
+  var isTouchDevice = (\'ontouchstart\' in window) || (navigator.maxTouchPoints > 0);
 
     function onScroll() {
       var heroH    = heroEl ? heroEl.offsetHeight : window.innerHeight;
       var y        = Math.min(window.scrollY, heroH);
       var progress = y / heroH;
-      if (heroFg) heroFg.style.transform = 'translateY(' + (-y * FG_SPEED) + 'px)';
+      if (heroFg && !isTouchDevice) heroFg.style.transform = 'translateY(' + (-y * FG_SPEED) + 'px)';
       var blurPx = progress * MAX_BLUR;
       if (bgImg) bgImg.style.filter = blurPx > 0.05 ? 'blur(' + blurPx.toFixed(2) + 'px)' : '';
     }

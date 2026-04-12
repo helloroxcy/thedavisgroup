@@ -158,8 +158,10 @@
     .hero-scroll-down {
       position: absolute;
       bottom: 28px;
-      left: 50%;
-      transform: translateX(-50%);
+      left: 0;
+      right: 0;
+      width: fit-content;
+      margin: 0 auto;
       z-index: 10;
       background: none;
       border: none;
@@ -181,8 +183,8 @@
       stroke-linejoin: round;
     }
     @keyframes bounce-down {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50%       { transform: translateX(-50%) translateY(6px); }
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(6px); }
     }
 
     /* =============================================
@@ -500,7 +502,7 @@
       #propPrev { left: 12px; }
       #propNext { right: 12px; }
 
-      .feat-title { font-size: clamp(30px, 4.5vw, 52px); }
+      .feat-title { font-size: clamp(30px, 4.5vw, 52px); line-height: 1.1; }
       .feat-address { font-size: 13px; }
 
       .neighborhoods { padding: 48px 20px; }
@@ -923,7 +925,8 @@
   const heroEl   = document.querySelector('.hero');
   const slides   = heroEl ? [...heroEl.querySelectorAll('.hero-slide')] : [];
   const FG_SPEED = 0.45;  /* white layer drifts up at 45% of scroll speed */
-  const MAX_BLUR = 10;    /* px, maximum blur at bottom of hero           */
+  const MAX_BLUR = 10;
+  var isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
 
   function onScroll() {
     const heroH    = heroEl ? heroEl.offsetHeight : window.innerHeight;
@@ -931,7 +934,7 @@
     const progress = y / heroH;
 
     /* Foreground layer, header + content move as one locked unit */
-    if (heroFg) heroFg.style.transform = 'translateY(' + (-y * FG_SPEED) + 'px)';
+    if (heroFg && !isTouchDevice) heroFg.style.transform = 'translateY(' + (-y * FG_SPEED) + 'px)';
 
     /* Background image blur, starts at 0, grows to MAX_BLUR */
     const blurPx   = progress * MAX_BLUR;
