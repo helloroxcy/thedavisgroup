@@ -22,6 +22,7 @@
     <a href="index.html">Home</a>\
     <a href="meet-the-team.html">Meet The Team</a>\
     <a href="neighborhoods.html">Neighborhoods</a>\
+    <a href="https://billdavis.epla.io/searches/162994902?" target="_blank" rel="noopener">Home Search</a>\
     <a href="contact.html">Contact</a>\
   </div>\
 </nav>';
@@ -38,6 +39,7 @@
       <img src="Images/TDG-logo-w10bg.svg" alt="The Davis Group" width="192">\
     </a>\
     <ul class="nav-group" style="justify-content: flex-end;">\
+      <li><a href="https://billdavis.epla.io/searches/162994902?" target="_blank" rel="noopener">Home Search</a></li>\
       <li><a href="contact.html">Contact</a></li>\
     </ul>\
   </div>\
