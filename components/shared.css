@@ -119,6 +119,7 @@ a { text-decoration: none; color: inherit; transition: color var(--ease); }
   display: flex;
   align-items: center;
   gap: 28px;
+  overflow: hidden;
 }
 .ornament-heading::before,
 .ornament-heading::after {
@@ -138,7 +139,8 @@ a { text-decoration: none; color: inherit; transition: color var(--ease); }
 .ornament-heading.orn-light::before,
 .ornament-heading.orn-light::after {
   background: rgba(41,43,51,0.35);
-  flex: 0 0 90px;
+  flex: 1 1 90px;
+  max-width: 90px;
 }
 .ornament-heading.orn-light span {
   color: #626470;
@@ -150,7 +152,8 @@ a { text-decoration: none; color: inherit; transition: color var(--ease); }
 .ornament-heading.orn-dark::before,
 .ornament-heading.orn-dark::after {
   background: rgba(255,255,255,0.35);
-  flex: 0 0 90px;
+  flex: 1 1 90px;
+  max-width: 90px;
 }
 .ornament-heading.orn-dark span {
   color: var(--white);
@@ -266,6 +269,7 @@ a { text-decoration: none; color: inherit; transition: color var(--ease); }
   display: flex;
   align-items: center;
   padding: 0 40px;
+  overflow: hidden;
 }
 .social-bar-inner {
   width: 100%;
@@ -275,9 +279,11 @@ a { text-decoration: none; color: inherit; transition: color var(--ease); }
   align-items: center;
   justify-content: center;
   gap: 36px;
+  overflow: hidden;
 }
 .social-bar-line {
-  flex: 0 0 90px;
+  flex: 1 1 90px;
+  max-width: 90px;
   height: 1px;
   background: rgba(41,43,51,0.35);
 }
