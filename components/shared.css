@@ -44,9 +44,10 @@
 html {
   overflow-x: clip;
   overscroll-behavior-x: none;
+  touch-action: pan-y pinch-zoom;
 }
 @media (hover: hover) {
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; touch-action: auto; }
 }
 
 body {
@@ -58,6 +59,7 @@ body {
   overflow-x: clip;
   overscroll-behavior-x: none;
   width: 100%;
+  max-width: 100%;
 }
 
 p, li, .nbhd-highlight-desc, .nbhd-about-text, .nbhd-intro-text {

@@ -96,4 +96,9 @@
   formsScript.defer = true;
   document.body.appendChild(formsScript);
 
+  /* ── Prevent any horizontal scroll on mobile ── */
+  window.addEventListener('scroll', function () {
+    if (window.scrollX !== 0) window.scrollTo(0, window.scrollY);
+  });
+
 })();
