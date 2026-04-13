@@ -59,7 +59,6 @@
       inset: 0;
       z-index: 5;
       pointer-events: none;
-      will-change: transform;
     }
     .page-hero-fg > * { pointer-events: auto; }
 
@@ -574,13 +573,14 @@
   const bgImg   = document.getElementById('heroBgImg');
   const FG_SPEED = 0.45;
   const MAX_BLUR = 10;
+  var isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
 
   function onScroll() {
     const heroH    = heroEl ? heroEl.offsetHeight : window.innerHeight;
     const y        = Math.min(window.scrollY, heroH);
     const progress = y / heroH;
 
-    if (heroFg) heroFg.style.transform = 'translateY(' + (-y * FG_SPEED) + 'px)';
+    if (heroFg && !isTouchDevice) heroFg.style.transform = 'translateY(' + (-y * FG_SPEED) + 'px)';
 
     const blurPx = progress * MAX_BLUR;
     if (bgImg) bgImg.style.filter = blurPx > 0.05 ? 'blur(' + blurPx.toFixed(2) + 'px)' : '';
