@@ -42,11 +42,9 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html {
-  overflow-x: hidden;
+  overflow-x: clip;
   overscroll-behavior-x: none;
 }
-/* scroll-behavior: smooth conflicts with overflow-x: hidden on
-   mobile browsers — scope it to non-touch devices only */
 @media (hover: hover) {
   html { scroll-behavior: smooth; }
 }
@@ -57,8 +55,9 @@ body {
   line-height: 2;
   color: var(--dark);
   background: var(--white);
-  overflow-x: hidden;
+  overflow-x: clip;
   overscroll-behavior-x: none;
+  width: 100%;
 }
 
 p, li, .nbhd-highlight-desc, .nbhd-about-text, .nbhd-intro-text {

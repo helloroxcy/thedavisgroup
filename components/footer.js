@@ -96,4 +96,26 @@
   formsScript.defer = true;
   document.body.appendChild(formsScript);
 
+  /* ── DEBUG: find elements wider than viewport (remove after fixing) ── */
+  window.addEventListener('load', function () {
+    var vw = document.documentElement.clientWidth;
+    var all = document.querySelectorAll('*');
+    var found = [];
+    all.forEach(function (el) {
+      var r = el.getBoundingClientRect();
+      if (r.right > vw + 1 || r.left < -1) {
+        found.push({ tag: el.tagName, id: el.id, cls: el.className, left: Math.round(r.left), right: Math.round(r.right), width: Math.round(r.width) });
+        el.style.outline = '3px solid red';
+      }
+    });
+    if (found.length) {
+      console.log('%c OVERFLOW ELEMENTS FOUND ', 'background:red;color:white;font-size:14px');
+      found.forEach(function (f) { console.log(f); });
+      var banner = document.createElement('div');
+      banner.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:red;color:white;padding:8px 16px;font:13px monospace;z-index:9999;text-align:center';
+      banner.textContent = found.length + ' element(s) overflow viewport — outlined in red. Check console.';
+      document.body.appendChild(banner);
+    }
+  });
+
 })();
