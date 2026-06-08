@@ -1,18 +1,17 @@
 # The Davis Group
 
-> The Davis Group is a luxury real estate team serving the Palos Verdes Peninsula and Beach Cities of Southern California. Led by Bill Davis and Jennifer Sambito, the team specializes in Palos Verdes Estates, Rancho Palos Verdes, Rolling Hills, Rolling Hills Estates, Manhattan Beach, Hermosa Beach, Redondo Beach, and the Hollywood Riviera. Approximately 40% of sales are off-market, giving network members access to properties unavailable through traditional channels.
+> The Davis Group is a luxury real estate team serving the Palos Verdes Peninsula and Beach Cities of Southern California. Led by Bill Davis, the team specializes in Palos Verdes Estates, Rancho Palos Verdes, Rolling Hills, Rolling Hills Estates, Manhattan Beach, Hermosa Beach, Redondo Beach, and the Hollywood Riviera. Approximately 40% of sales are off-market, giving network members access to properties unavailable through traditional channels.
 
 ## About
 
-The Davis Group operates out of Palm Realty Boutique in Palos Verdes, California. Bill Davis has over 15 years of experience and is ranked by HomeLight as a top listing agent in Palos Verdes Estates and among the top 16% of agents who sell homes fastest in the region. Jennifer Sambito is a Licensed California Attorney at Law with nineteen years of legal experience and over a decade in real estate, recognized four consecutive years as an award-winning producer at Prudential California Realty.
+The Davis Group operates out of Palm Realty Boutique in Palos Verdes, California. Bill Davis has over 15 years of experience and is ranked by HomeLight as a top listing agent in Palos Verdes Estates and among the top 16% of agents who sell homes fastest in the region.
 
 ## Key Pages
 
 - [Home](https://thedavisgroup.netlify.app/index.html): Overview of the team, featured neighborhoods, off-market network sign-up, and contact form.
 - [Neighborhoods](https://thedavisgroup.netlify.app/neighborhoods.html): Overview of all eight communities served by The Davis Group.
-- [Meet the Team](https://thedavisgroup.netlify.app/meet-the-team.html): Profiles of Bill Davis and Jennifer Sambito.
+- [Meet the Team](https://thedavisgroup.netlify.app/meet-the-team.html): Profile of Bill Davis.
 - [Bill Davis](https://thedavisgroup.netlify.app/bill-davis.html): Full profile, credentials, and contact information for founding partner Bill Davis. DRE# 01374451.
-- [Jennifer Sambito](https://thedavisgroup.netlify.app/jennifer-sambito.html): Full profile, credentials, and contact information for sales associate Jennifer Sambito. BRE# 01328628.
 - [Privacy Policy](https://thedavisgroup.netlify.app/privacy-policy.html): Data collection and privacy practices.
 
 ## Neighborhood Pages
@@ -32,4 +31,3 @@ The Davis Group operates out of Palm Realty Boutique in Palos Verdes, California
 - Phone: (310) 920-8812
 - Address: 450 Silver Spur Road, Palos Verdes, CA 90275
 - DRE# Bill Davis 01374451
-- BRE# Jennifer Sambito 01328628

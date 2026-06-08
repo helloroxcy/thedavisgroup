@@ -50,7 +50,7 @@
           <div class="footer-small-cols">\
             <div>\
               <p class="footer-disclaimer">While some of the listings on our site may not be exclusive, we have ongoing relationships with all of the listing agents.</p>\
-              <p class="footer-dre">Bill Davis DRE# 01374451<br>Jennifer Sambito BRE# 01328628<br>Copyright&copy; <span id="footer-year"></span> The Davis Group<br>All Rights Reserved</p>\
+              <p class="footer-dre">Bill Davis DRE# 01374451<br>Copyright&copy; <span id="footer-year"></span> The Davis Group<br>All Rights Reserved</p>\
             </div>\
             <div>\
               <p class="footer-legal">All material presented herein is intended for information purposes only. While this information is believed to be correct, it is represented subject to errors, omissions, changes or withdrawal without notice. All property information, including, but not limited to square footage, room count, number of bedrooms and the school district in property listings should be verified by your own attorney, architect or zoning expert.</p>\
