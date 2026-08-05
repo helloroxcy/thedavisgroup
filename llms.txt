@@ -8,26 +8,26 @@ The Davis Group operates out of Palm Realty Boutique in Palos Verdes, California
 
 ## Key Pages
 
-- [Home](https://thedavisgroup.netlify.app/index.html): Overview of the team, featured neighborhoods, off-market network sign-up, and contact form.
-- [Neighborhoods](https://thedavisgroup.netlify.app/neighborhoods.html): Overview of all eight communities served by The Davis Group.
-- [Meet the Team](https://thedavisgroup.netlify.app/meet-the-team.html): Profile of Bill Davis.
-- [Bill Davis](https://thedavisgroup.netlify.app/bill-davis.html): Full profile, credentials, and contact information for founding partner Bill Davis. DRE# 01374451.
-- [Privacy Policy](https://thedavisgroup.netlify.app/privacy-policy.html): Data collection and privacy practices.
+- [Home](https://thedavisgroup.io/index.html): Overview of the team, featured neighborhoods, off-market network sign-up, and contact form.
+- [Neighborhoods](https://thedavisgroup.io/neighborhoods.html): Overview of all eight communities served by The Davis Group.
+- [Meet the Team](https://thedavisgroup.io/meet-the-team.html): Profile of Bill Davis.
+- [Bill Davis](https://thedavisgroup.io/bill-davis.html): Full profile, credentials, and contact information for founding partner Bill Davis. DRE# 01374451.
+- [Privacy Policy](https://thedavisgroup.io/privacy-policy.html): Data collection and privacy practices.
 
 ## Neighborhood Pages
 
-- [Palos Verdes Estates](https://thedavisgroup.netlify.app/palos-verdes-estates.html): Ocean bluff estates, golf club, Malaga Cove Plaza, top-ranked schools.
-- [Rancho Palos Verdes](https://thedavisgroup.netlify.app/rancho-palos-verdes.html): Coastal bluffs, nature preserve, diverse price points, Terranea Resort.
-- [Rolling Hills](https://thedavisgroup.netlify.app/rolling-hills.html): Gated community, 1-acre minimum lots, equestrian trails, zero commercial development.
-- [Rolling Hills Estates](https://thedavisgroup.netlify.app/rolling-hills-estates.html): Equestrian community, The Shoppes at PV, top-rated schools, family neighborhoods.
-- [Manhattan Beach](https://thedavisgroup.netlify.app/manhattan-beach.html): The Strand, award-winning schools, downtown dining, beach volleyball.
-- [Hermosa Beach](https://thedavisgroup.netlify.app/hermosa-beach.html): Pier Avenue, the Greenbelt Trail, Fiesta Hermosa, walkable lifestyle.
-- [Redondo Beach](https://thedavisgroup.netlify.app/redondo-beach.html): King Harbor Marina, Riviera Village, coastal bike path, waterfront dining.
-- [Hollywood Riviera](https://thedavisgroup.netlify.app/hollywood-riviera.html): Santa Monica Bay views, Torrance USD schools, mid-century architecture, Peninsula access.
+- [Palos Verdes Estates](https://thedavisgroup.io/palos-verdes-estates.html): Ocean bluff estates, golf club, Malaga Cove Plaza, top-ranked schools.
+- [Rancho Palos Verdes](https://thedavisgroup.io/rancho-palos-verdes.html): Coastal bluffs, nature preserve, diverse price points, Terranea Resort.
+- [Rolling Hills](https://thedavisgroup.io/rolling-hills.html): Gated community, 1-acre minimum lots, equestrian trails, zero commercial development.
+- [Rolling Hills Estates](https://thedavisgroup.io/rolling-hills-estates.html): Equestrian community, The Shoppes at PV, top-rated schools, family neighborhoods.
+- [Manhattan Beach](https://thedavisgroup.io/manhattan-beach.html): The Strand, award-winning schools, downtown dining, beach volleyball.
+- [Hermosa Beach](https://thedavisgroup.io/hermosa-beach.html): Pier Avenue, the Greenbelt Trail, Fiesta Hermosa, walkable lifestyle.
+- [Redondo Beach](https://thedavisgroup.io/redondo-beach.html): King Harbor Marina, Riviera Village, coastal bike path, waterfront dining.
+- [Hollywood Riviera](https://thedavisgroup.io/hollywood-riviera.html): Santa Monica Bay views, Torrance USD schools, mid-century architecture, Peninsula access.
 
 ## Contact
 
 - Email: billdavishomes@me.com
 - Phone: (310) 920-8812
-- Address: 450 Silver Spur Road, Palos Verdes, CA 90275
+- Address: 450 Silver Spur Road, Rancho Palos Verdes, CA 90275
 - DRE# Bill Davis 01374451
